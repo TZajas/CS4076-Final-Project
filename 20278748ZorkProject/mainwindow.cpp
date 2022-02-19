@@ -29,6 +29,13 @@ MainWindow::~MainWindow()
     createRooms();
 }*/
 
+QString MainWindow::printRooms(){
+    string des;
+    des = currentRoom->longDescription();
+    QString str = QString::fromUtf8(des.c_str());
+    return str;
+}
+
 void MainWindow::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
 
@@ -83,8 +90,12 @@ void MainWindow::go() {
     {
         currentRoom = nextRoom;
     }
+}
 
-
+void MainWindow::teleport(){
+    unsigned int roomSize = rooms.size();
+    unsigned int randRoom = rand() % roomSize;
+    currentRoom = rooms[randRoom];
 }
 
 
@@ -93,9 +104,7 @@ void MainWindow::on_NorthButton_clicked()
 {
     dir = "north";
     go();
-    string des = currentRoom->longDescription();
-    QString str = QString::fromUtf8(des.c_str());
-    ui->dir_label->setText(str);
+    ui->dir_label->setText(printRooms());
 }
 
 
@@ -104,9 +113,7 @@ void MainWindow::on_WestButton_clicked()
 
     dir = "west";
     go();
-    string des = currentRoom->longDescription();
-    QString str = QString::fromUtf8(des.c_str());
-    ui->dir_label->setText(str);
+    ui->dir_label->setText(printRooms());
 }
 
 
@@ -114,9 +121,7 @@ void MainWindow::on_EastButton_clicked()
 {
     dir = "east";
     go();
-    string des = currentRoom->longDescription();
-    QString str = QString::fromUtf8(des.c_str());
-    ui->dir_label->setText(str);
+    ui->dir_label->setText(printRooms());
 }
 
 
@@ -124,8 +129,14 @@ void MainWindow::on_SouthButton_clicked()
 {
     dir = "south";
     go();
-    string des = currentRoom->longDescription();
-    QString str = QString::fromUtf8(des.c_str());
-    ui->dir_label->setText(str);
+    ui->dir_label->setText(printRooms());
+}
+
+
+void MainWindow::on_TeleportButton_clicked()
+{
+    teleport();
+    ui->dir_label->setText(printRooms());
+
 }
 

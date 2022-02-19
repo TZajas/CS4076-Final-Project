@@ -23,6 +23,8 @@ public:
     ~MainWindow();
     void go();
     void createRooms();
+    void teleport();
+    QString printRooms();
 
 private slots:
     void on_NorthButton_clicked();
@@ -32,6 +34,8 @@ private slots:
     void on_EastButton_clicked();
 
     void on_SouthButton_clicked();
+
+    void on_TeleportButton_clicked();
 
 private:
 

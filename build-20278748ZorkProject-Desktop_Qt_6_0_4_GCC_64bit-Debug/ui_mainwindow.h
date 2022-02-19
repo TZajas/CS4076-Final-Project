@@ -29,6 +29,7 @@ public:
     QPushButton *WestButton;
     QPushButton *SouthButton;
     QLabel *dir_label;
+    QPushButton *TeleportButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -54,6 +55,9 @@ public:
         dir_label = new QLabel(centralwidget);
         dir_label->setObjectName(QString::fromUtf8("dir_label"));
         dir_label->setGeometry(QRect(30, 90, 341, 161));
+        TeleportButton = new QPushButton(centralwidget);
+        TeleportButton->setObjectName(QString::fromUtf8("TeleportButton"));
+        TeleportButton->setGeometry(QRect(660, 430, 89, 25));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -76,6 +80,7 @@ public:
         WestButton->setText(QCoreApplication::translate("MainWindow", "West", nullptr));
         SouthButton->setText(QCoreApplication::translate("MainWindow", "South", nullptr));
         dir_label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        TeleportButton->setText(QCoreApplication::translate("MainWindow", "Teleport", nullptr));
     } // retranslateUi
 
 };
