@@ -4,6 +4,9 @@
 #include "ZorkUL.h"
 #include "Room.h"
 #include "item.h"
+#include <iostream>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,10 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     createRooms();
-    //QPixmap pix("/home/tomek/Pictures/minecraftWorld.jpg");
-    //int w = ui->label_pic->width();
-    //int h = ui->label_pic->height();
-    //ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+
 
 }
 
@@ -34,6 +34,13 @@ QString MainWindow::printRooms(){
     des = currentRoom->longDescription();
     QString str = QString::fromUtf8(des.c_str());
     return str;
+}
+
+void MainWindow::updateImage(QString dest){
+    QPixmap pix(dest);
+    int w = ui->imgLabel->width();
+    int h = ui->imgLabel->height();
+    ui->imgLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
 }
 
 void MainWindow::createRooms()  {
@@ -76,6 +83,8 @@ void MainWindow::createRooms()  {
     i->setExits(NULL, d, NULL, NULL);
     newRoom->setExits(d, NULL, NULL, NULL);
     currentRoom = a;
+    ui->dir_label->setText(printRooms());
+
 }
 
 void MainWindow::go() {
@@ -105,6 +114,7 @@ void MainWindow::on_NorthButton_clicked()
     dir = "north";
     go();
     ui->dir_label->setText(printRooms());
+    updateImage("/home/tomek/Pictures/minecraftWorld.jpg");
 }
 
 
@@ -137,6 +147,11 @@ void MainWindow::on_TeleportButton_clicked()
 {
     teleport();
     ui->dir_label->setText(printRooms());
+}
+
+
+void MainWindow::on_MapButton_clicked()
+{
 
 }
 

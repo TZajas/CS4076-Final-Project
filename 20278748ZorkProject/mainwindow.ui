@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1235</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,11 +17,20 @@
    <widget class="QPushButton" name="NorthButton">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>80</y>
-      <width>89</width>
-      <height>25</height>
+      <x>880</x>
+      <y>30</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+      <pointsize>15</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
     </property>
     <property name="text">
      <string>North</string>
@@ -30,11 +39,17 @@
    <widget class="QPushButton" name="EastButton">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>150</y>
-      <width>89</width>
-      <height>25</height>
+      <x>1010</x>
+      <y>140</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>East</string>
@@ -43,11 +58,17 @@
    <widget class="QPushButton" name="WestButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>750</x>
       <y>140</y>
-      <width>89</width>
-      <height>25</height>
+      <width>131</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>West</string>
@@ -56,11 +77,17 @@
    <widget class="QPushButton" name="SouthButton">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>210</y>
-      <width>89</width>
-      <height>25</height>
+      <x>880</x>
+      <y>250</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+      <pointsize>15</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>South</string>
@@ -69,27 +96,72 @@
    <widget class="QLabel" name="dir_label">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>90</y>
+      <x>780</x>
+      <y>480</y>
       <width>341</width>
       <height>161</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Location</string>
     </property>
    </widget>
    <widget class="QPushButton" name="TeleportButton">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>430</y>
-      <width>89</width>
-      <height>25</height>
+      <x>750</x>
+      <y>400</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+     </font>
     </property>
     <property name="text">
      <string>Teleport</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MapButton">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>400</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Samyak Malayalam</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Map</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imgLabel">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>651</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>6</number>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -98,7 +170,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1235</width>
      <height>22</height>
     </rect>
    </property>

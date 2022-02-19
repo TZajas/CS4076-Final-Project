@@ -30,6 +30,8 @@ public:
     QPushButton *SouthButton;
     QLabel *dir_label;
     QPushButton *TeleportButton;
+    QPushButton *MapButton;
+    QLabel *imgLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -37,31 +39,57 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(1235, 720);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         NorthButton = new QPushButton(centralwidget);
         NorthButton->setObjectName(QString::fromUtf8("NorthButton"));
-        NorthButton->setGeometry(QRect(530, 80, 89, 25));
+        NorthButton->setGeometry(QRect(880, 30, 131, 61));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Samyak Malayalam"));
+        font.setPointSize(15);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setKerning(true);
+        NorthButton->setFont(font);
         EastButton = new QPushButton(centralwidget);
         EastButton->setObjectName(QString::fromUtf8("EastButton"));
-        EastButton->setGeometry(QRect(650, 150, 89, 25));
+        EastButton->setGeometry(QRect(1010, 140, 131, 61));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Samyak Malayalam"));
+        font1.setPointSize(15);
+        EastButton->setFont(font1);
         WestButton = new QPushButton(centralwidget);
         WestButton->setObjectName(QString::fromUtf8("WestButton"));
-        WestButton->setGeometry(QRect(430, 140, 89, 25));
+        WestButton->setGeometry(QRect(750, 140, 131, 61));
+        WestButton->setFont(font1);
         SouthButton = new QPushButton(centralwidget);
         SouthButton->setObjectName(QString::fromUtf8("SouthButton"));
-        SouthButton->setGeometry(QRect(530, 210, 89, 25));
+        SouthButton->setGeometry(QRect(880, 250, 131, 61));
+        SouthButton->setFont(font1);
         dir_label = new QLabel(centralwidget);
         dir_label->setObjectName(QString::fromUtf8("dir_label"));
-        dir_label->setGeometry(QRect(30, 90, 341, 161));
+        dir_label->setGeometry(QRect(780, 480, 341, 161));
         TeleportButton = new QPushButton(centralwidget);
         TeleportButton->setObjectName(QString::fromUtf8("TeleportButton"));
-        TeleportButton->setGeometry(QRect(660, 430, 89, 25));
+        TeleportButton->setGeometry(QRect(750, 400, 131, 61));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Samyak Malayalam"));
+        TeleportButton->setFont(font2);
+        MapButton = new QPushButton(centralwidget);
+        MapButton->setObjectName(QString::fromUtf8("MapButton"));
+        MapButton->setGeometry(QRect(1010, 400, 131, 61));
+        MapButton->setFont(font2);
+        imgLabel = new QLabel(centralwidget);
+        imgLabel->setObjectName(QString::fromUtf8("imgLabel"));
+        imgLabel->setGeometry(QRect(40, 10, 651, 361));
+        imgLabel->setFrameShape(QFrame::Panel);
+        imgLabel->setFrameShadow(QFrame::Raised);
+        imgLabel->setLineWidth(6);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 1235, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -79,8 +107,10 @@ public:
         EastButton->setText(QCoreApplication::translate("MainWindow", "East", nullptr));
         WestButton->setText(QCoreApplication::translate("MainWindow", "West", nullptr));
         SouthButton->setText(QCoreApplication::translate("MainWindow", "South", nullptr));
-        dir_label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        dir_label->setText(QCoreApplication::translate("MainWindow", "Location", nullptr));
         TeleportButton->setText(QCoreApplication::translate("MainWindow", "Teleport", nullptr));
+        MapButton->setText(QCoreApplication::translate("MainWindow", "Map", nullptr));
+        imgLabel->setText(QString());
     } // retranslateUi
 
 };

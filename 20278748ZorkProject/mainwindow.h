@@ -25,6 +25,7 @@ public:
     void createRooms();
     void teleport();
     QString printRooms();
+    void updateImage(QString dest);
 
 private slots:
     void on_NorthButton_clicked();
@@ -36,6 +37,8 @@ private slots:
     void on_SouthButton_clicked();
 
     void on_TeleportButton_clicked();
+
+    void on_MapButton_clicked();
 
 private:
 
