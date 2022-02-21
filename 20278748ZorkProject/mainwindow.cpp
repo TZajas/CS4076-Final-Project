@@ -5,6 +5,7 @@
 #include "Room.h"
 #include "item.h"
 #include <iostream>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     createRooms();
+    createTeleportBox();
 
 
 }
@@ -28,6 +30,16 @@ MainWindow::~MainWindow()
 /*ZorkUL::ZorkUL() {
     createRooms();
 }*/
+
+void MainWindow::createTeleportBox(){
+    for(int i=65;i<=74;i++){
+        char c = i;
+        string s(1, c);
+        QString str = QString::fromUtf8(s.c_str());
+        ui->TeleportBox->addItem("room " + str);
+    }
+    ui->TeleportBox->addItem("Random");
+}
 
 QString MainWindow::printRooms(){
     string des;
@@ -105,6 +117,7 @@ void MainWindow::teleport(){
     unsigned int roomSize = rooms.size();
     unsigned int randRoom = rand() % roomSize;
     currentRoom = rooms[randRoom];
+    ui->dir_label->setText(printRooms());
 }
 
 
@@ -143,15 +156,29 @@ void MainWindow::on_SouthButton_clicked()
 }
 
 
-void MainWindow::on_TeleportButton_clicked()
+/*void MainWindow::on_TeleportButton_clicked()
 {
     teleport();
     ui->dir_label->setText(printRooms());
-}
+}*/
 
 
 void MainWindow::on_MapButton_clicked()
 {
+
+}
+
+
+void MainWindow::on_TeleportButton_clicked()
+{
+    int pos = ui->TeleportBox->currentIndex();
+    if(pos == ui->TeleportBox->count()-1){
+        teleport();
+    }else{
+        currentRoom = rooms[pos];
+        ui->dir_label->setText(printRooms());
+    }
+
 
 }
 

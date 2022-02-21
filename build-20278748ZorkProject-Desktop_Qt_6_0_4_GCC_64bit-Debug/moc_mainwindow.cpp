@@ -35,14 +35,14 @@ QT_MOC_LITERAL(34, 0), // ""
 QT_MOC_LITERAL(35, 21), // "on_WestButton_clicked"
 QT_MOC_LITERAL(57, 21), // "on_EastButton_clicked"
 QT_MOC_LITERAL(79, 22), // "on_SouthButton_clicked"
-QT_MOC_LITERAL(102, 25), // "on_TeleportButton_clicked"
-QT_MOC_LITERAL(128, 20) // "on_MapButton_clicked"
+QT_MOC_LITERAL(102, 20), // "on_MapButton_clicked"
+QT_MOC_LITERAL(123, 25) // "on_TeleportButton_clicked"
 
     },
     "MainWindow\0on_NorthButton_clicked\0\0"
     "on_WestButton_clicked\0on_EastButton_clicked\0"
-    "on_SouthButton_clicked\0on_TeleportButton_clicked\0"
-    "on_MapButton_clicked"
+    "on_SouthButton_clicked\0on_MapButton_clicked\0"
+    "on_TeleportButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,8 +88,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_WestButton_clicked(); break;
         case 2: _t->on_EastButton_clicked(); break;
         case 3: _t->on_SouthButton_clicked(); break;
-        case 4: _t->on_TeleportButton_clicked(); break;
-        case 5: _t->on_MapButton_clicked(); break;
+        case 4: _t->on_MapButton_clicked(); break;
+        case 5: _t->on_TeleportButton_clicked(); break;
         default: ;
         }
     }
