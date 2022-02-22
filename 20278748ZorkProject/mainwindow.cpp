@@ -12,14 +12,10 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    //create rooom
-
 {
     ui->setupUi(this);
     createRooms();
     createTeleportBox();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -31,6 +27,7 @@ MainWindow::~MainWindow()
     createRooms();
 }*/
 
+//creates combobox with teleport options
 void MainWindow::createTeleportBox(){
     for(int i=65;i<=74;i++){
         char c = i;
@@ -41,6 +38,7 @@ void MainWindow::createTeleportBox(){
     ui->TeleportBox->addItem("Random");
 }
 
+//prints current location to label
 QString MainWindow::printRooms(){
     string des;
     des = currentRoom->longDescription();
@@ -48,6 +46,8 @@ QString MainWindow::printRooms(){
     return str;
 }
 
+
+//updates the image lable depending on location
 void MainWindow::updateImage(QString dest){
     QPixmap pix(dest);
     int w = ui->imgLabel->width();
@@ -55,6 +55,7 @@ void MainWindow::updateImage(QString dest){
     ui->imgLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
 }
 
+//intialises the rooms in the map and adds them to vector
 void MainWindow::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
 
@@ -99,6 +100,7 @@ void MainWindow::createRooms()  {
 
 }
 
+//moves player around the map using the north south east west push buttons
 void MainWindow::go() {
 
     //Make the direction lowercase
@@ -113,7 +115,8 @@ void MainWindow::go() {
     }
 }
 
-void MainWindow::teleport(){
+//changes location to a random room
+void MainWindow::teleportRand(){
     unsigned int roomSize = rooms.size();
     unsigned int randRoom = rand() % roomSize;
     currentRoom = rooms[randRoom];
@@ -156,24 +159,17 @@ void MainWindow::on_SouthButton_clicked()
 }
 
 
-/*void MainWindow::on_TeleportButton_clicked()
-{
-    teleport();
-    ui->dir_label->setText(printRooms());
-}*/
-
-
 void MainWindow::on_MapButton_clicked()
 {
 
 }
 
-
+//checks indexes from combo box to teleport player to random room or room of choice;
 void MainWindow::on_TeleportButton_clicked()
 {
     int pos = ui->TeleportBox->currentIndex();
     if(pos == ui->TeleportBox->count()-1){
-        teleport();
+        teleportRand();
     }else{
         currentRoom = rooms[pos];
         ui->dir_label->setText(printRooms());
