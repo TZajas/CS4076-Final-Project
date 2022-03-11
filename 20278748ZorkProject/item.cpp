@@ -1,6 +1,6 @@
 #include "item.h"
 
-Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/) {
+Item::Item (string inDescription, int inWeightGrams=0, float inValue=0, int weaponCheck=0) {
 	description = inDescription;
 	setWeight(inWeightGrams);
 	value = inValue;
@@ -8,8 +8,10 @@ Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weapo
 }
 
 Item::Item(string inDescription) {
-	description = inDescription;
+    description = inDescription;
 }
+
+
 
 void Item::setWeight(int inWeightGrams)
 {

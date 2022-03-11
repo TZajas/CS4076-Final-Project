@@ -14,123 +14,70 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    createRooms();
+    zork = new ZorkUL();
+    ui->dir_label->setText(toQString(zork->printRooms()));
+    /*createRooms();*/
     createTeleportBox();
 }
 
 MainWindow::~MainWindow()
 {
+    delete zork;
     delete ui;
 }
-
-/*ZorkUL::ZorkUL() {
-    createRooms();
-}*/
 
 //creates combobox with teleport options
 void MainWindow::createTeleportBox(){
     for(int i=65;i<=74;i++){
         char c = i;
         string s(1, c);
-        QString str = QString::fromUtf8(s.c_str());
-        ui->TeleportBox->addItem("room " + str);
+        //QString str = QString::fromUtf8(s.c_str());
+        ui->TeleportBox->addItem("room " + toQString(s));
     }
     ui->TeleportBox->addItem("Random");
 }
 
-//prints current location to label
-QString MainWindow::printRooms(){
-    string des;
-    des = currentRoom->longDescription();
-    QString str = QString::fromUtf8(des.c_str());
+QString MainWindow::toQString(string s){
+    QString str = QString::fromUtf8(s.c_str());
     return str;
 }
 
+void MainWindow::imageDestination(QString &pic){
+    vector<Room*>rooms = zork->getRooms();
+    string loc = "/home/tomek/Desktop/ZorkProject20278748/ProjectImages/";
+    string end = ".jpg";
+    int j=0;
+    string letter;
+    for(int i=97;i<=106;i++){
+        char c = i;
+        if(rooms[j] == zork->getCurrentRoom()){
+            string s(1, c);
+            string letter = s;
+            break;
+        }
+        j++;
+    }
+     //QString picture = toQString(loc + letter + end);
 
+     pic = toQString(letter);
+}
 //updates the image lable depending on location
 void MainWindow::updateImage(QString dest){
-    QPixmap pix(dest);
+    /*QPixmap pix(dest);
     int w = ui->imgLabel->width();
     int h = ui->imgLabel->height();
-    ui->imgLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+    ui->imgLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));*/
+    ui->dir_label->setText(dest);
 }
-
-//intialises the rooms in the map and adds them to vector
-void MainWindow::createRooms()  {
-    Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
-
-    a = new Room("a");
-        a->addItem(new Item("x", 1, 11));
-        a->addItem(new Item("y", 2, 22));
-    rooms.push_back(a);
-    b = new Room("b");
-        b->addItem(new Item("xx", 3, 33));
-        b->addItem(new Item("yy", 4, 44));
-    rooms.push_back(b);
-    c = new Room("c");
-    rooms.push_back(c);
-    d = new Room("d");
-    rooms.push_back(d);
-    e = new Room("e");
-    rooms.push_back(e);
-    f = new Room("f");
-    rooms.push_back(f);
-    g = new Room("g");
-    rooms.push_back(g);
-    h = new Room("h");
-    rooms.push_back(h);
-    i = new Room("i");
-    rooms.push_back(i);
-    newRoom = new Room("j");
-    rooms.push_back(newRoom);
-
-//             (N, E, S, W)
-    a->setExits(f, b, d, c);
-    b->setExits(NULL, NULL, NULL, a);
-    c->setExits(NULL, a, NULL, NULL);
-    d->setExits(a, e, newRoom, i);
-    e->setExits(NULL, NULL, NULL, d);
-    f->setExits(NULL, g, a, h);
-    g->setExits(NULL, NULL, NULL, f);
-    h->setExits(NULL, f, NULL, NULL);
-    i->setExits(NULL, d, NULL, NULL);
-    newRoom->setExits(d, NULL, NULL, NULL);
-    currentRoom = a;
-    ui->dir_label->setText(printRooms());
-
-}
-
-//moves player around the map using the north south east west push buttons
-void MainWindow::go() {
-
-    //Make the direction lowercase
-    //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    //Move to the next room
-    Room* nextRoom = currentRoom->nextRoom(dir);
-    if (nextRoom == NULL)
-        currentRoom;
-    else
-    {
-        currentRoom = nextRoom;
-    }
-}
-
-//changes location to a random room
-void MainWindow::teleportRand(){
-    unsigned int roomSize = rooms.size();
-    unsigned int randRoom = rand() % roomSize;
-    currentRoom = rooms[randRoom];
-    ui->dir_label->setText(printRooms());
-}
-
-
 
 void MainWindow::on_NorthButton_clicked()
 {
     dir = "north";
-    go();
-    ui->dir_label->setText(printRooms());
-    updateImage("/home/tomek/Pictures/minecraftWorld.jpg");
+    zork->goRoom(dir);
+    ui->dir_label->setText(toQString(zork->printRooms()));
+    //imageDestination(imageDes);
+    //updateImage("/home/tomek/Pictures/minecraftWorld.jpg");
+    //updateImage(imageDes);
 }
 
 
@@ -138,24 +85,24 @@ void MainWindow::on_WestButton_clicked()
 {
 
     dir = "west";
-    go();
-    ui->dir_label->setText(printRooms());
+    zork->goRoom(dir);
+    ui->dir_label->setText(toQString(zork->printRooms()));
 }
 
 
 void MainWindow::on_EastButton_clicked()
 {
     dir = "east";
-    go();
-    ui->dir_label->setText(printRooms());
+    zork->goRoom(dir);
+    ui->dir_label->setText(toQString(zork->printRooms()));
 }
 
 
 void MainWindow::on_SouthButton_clicked()
 {
     dir = "south";
-    go();
-    ui->dir_label->setText(printRooms());
+    zork->goRoom(dir);
+    ui->dir_label->setText(toQString(zork->printRooms()));
 }
 
 
@@ -167,12 +114,15 @@ void MainWindow::on_MapButton_clicked()
 //checks indexes from combo box to teleport player to random room or room of choice;
 void MainWindow::on_TeleportButton_clicked()
 {
+    vector<Room*> rooms = zork->getRooms();
     int pos = ui->TeleportBox->currentIndex();
     if(pos == ui->TeleportBox->count()-1){
-        teleportRand();
+        zork->teleport();
+        ui->dir_label->setText(toQString(zork->printRooms()));
     }else{
-        currentRoom = rooms[pos];
-        ui->dir_label->setText(printRooms());
+        //currentRoom = rooms[pos];
+        zork->setCurrentRoom(rooms[pos]);
+        ui->dir_label->setText(toQString(zork->printRooms()));
     }
 
 

@@ -13,13 +13,17 @@ SOURCES += \
     ZorkUL.cpp \
     item.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tool.cpp \
+    weapon.cpp
 
 HEADERS += \
     Room.h \
     ZorkUL.h \
     item.h \
-    mainwindow.h
+    mainwindow.h \
+    tool.h \
+    weapon.h
 
 FORMS += \
     mainwindow.ui

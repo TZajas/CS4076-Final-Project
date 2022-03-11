@@ -3,17 +3,18 @@
 using namespace std;
 #include "ZorkUL.h"
 
-/*int main(int argc, char **) {
-    ZorkUL temp;
-    temp.play();
-    return 0;
-}*/
-
-/*ZorkUL::ZorkUL() {
+ZorkUL::ZorkUL() {
     createRooms();
 }
 
-void ZorkUL::createRooms()  {
+ZorkUL::~ZorkUL(){
+    for(int i=0;i<rooms.size();i++){
+        delete rooms[i];
+    }
+}
+
+//intialises the rooms in the map and adds them to vector
+inline void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
 
     a = new Room("a");
@@ -21,7 +22,7 @@ void ZorkUL::createRooms()  {
         a->addItem(new Item("y", 2, 22));
     rooms.push_back(a);
     b = new Room("b");
-        b->addItem(new Item("xx", 3, 33));
+        b->addItem(new Item("x", 3, 33));
         b->addItem(new Item("yy", 4, 44));
     rooms.push_back(b);
     c = new Room("c");
@@ -53,7 +54,7 @@ void ZorkUL::createRooms()  {
     i->setExits(NULL, d, NULL, NULL);
     newRoom->setExits(d, NULL, NULL, NULL);
     currentRoom = a;
-}*/
+}
 
 /**
  *  Main play routine.  Loops until end of play.
@@ -78,11 +79,12 @@ void ZorkUL::play() {
     cout << "end" << endl;*/
 }
 
-void ZorkUL::printWelcome() {
-    cout << "start"<< endl;
-    cout << "info for help"<< endl;
-    cout << endl;
-    cout << currentRoom->longDescription() << endl;
+string ZorkUL::printWelcome() {
+    string w = "start\n";
+    string e = "info for help\n";
+    string l = "\n";
+    string c =  currentRoom->longDescription();
+    return w + e + l + c;
 
 }
 
@@ -211,18 +213,28 @@ void ZorkUL::printWelcome() {
     }
 }*/
 
-void ZorkUL::teleport(string room){
-    if (room.compare("rand") == 0){
+string ZorkUL::printRooms(){
+    string des;
+    des = currentRoom->longDescription();
+    //QString str = QString::fromUtf8(des.c_str());
+    return des;
+}
+
+void ZorkUL::goRoom(string direction){
+    Room* nextRoom = currentRoom->nextRoom(direction);
+    if (nextRoom == NULL)
+        currentRoom;
+    else
+    {
+        currentRoom = nextRoom;
+    }
+}
+
+
+
+void ZorkUL::teleport(){
         unsigned int roomSize = rooms.size();
         unsigned int randRoom = rand() % roomSize;
         currentRoom = rooms[randRoom];
-    }
-    else{
-        for (unsigned int i = 0; i < rooms.size(); i++)
-        {
-            if (rooms[i]->shortDescription().compare(room) == 0)
-                currentRoom = rooms[i];
-        }
-    }
 
 }

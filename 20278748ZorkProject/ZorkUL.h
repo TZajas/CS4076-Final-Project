@@ -11,22 +11,38 @@ using namespace std;
 class ZorkUL {
 private:
     //Parser parser;
-    vector<Room*> rooms;
     Room *currentRoom;
+    vector<Room*> rooms;
     void createRooms();
-    void printWelcome();
    // bool processCommand(Command command);
     void printHelp();
    // void goRoom(Command command);
     void createItems();
     void displayItems();
-    void teleport(string direction);
 
 public:
+    inline Room* getCurrentRoom() const
+    {
+        return currentRoom;
+    }
+
+    inline void setCurrentRoom(Room* r)
+    {
+        currentRoom = r;
+    }
+
+    inline vector<Room*> getRooms()
+    {
+        return rooms;
+    }
+    string printRooms();
+    string printWelcome();
     string dir;
     ZorkUL();
+    ~ZorkUL();
     void play();
-    void go();
+    void goRoom(string direction);
+    void teleport();
 };
 
 #endif /*ZORKUL_H_*/

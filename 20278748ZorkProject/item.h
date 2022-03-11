@@ -15,7 +15,8 @@ private:
 	bool weaponCheck;
 
 public:
-    Item (string description, int inWeight, float inValue);
+    Item ();
+    Item (string description, int inWeight, float inValue, int weaponCheck);
     Item (string description);
 	string getShortDescription();
     string getLongDescription();
