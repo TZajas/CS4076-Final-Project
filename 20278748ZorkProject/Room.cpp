@@ -40,26 +40,30 @@ Room* Room::nextRoom(string direction) {
 				// part of the "pair" (<string, Room*>) and return it.
 }
 
-Room* Room::tpRoom(){
-
+void Room::addImage(Image *img){
+    images.push_back(*img);
 }
 
 void Room::addItem(Item *inItem) {
     //cout <<endl;
     //cout << "Just added" + inItem->getLongDescription();
-    itemsInRoom.push_back(*inItem);
+    itemsInRoom.push_back(inItem);
+}
+
+void Room::removeItemFromRoom(int location){
+    itemsInRoom.erase(itemsInRoom.begin() + location);
 }
 
 string Room::displayItem() {
-    string tempString = "items in room = ";
+    string tempString = "items in room: ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
         tempString = "no items in room";
         }
     else if (itemsInRoom.size() > 0) {
-       int x = (0);
+       int x = 0;
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = tempString + itemsInRoom[x]->getShortDescription() + "  " ;
             x++;
             }
         }
@@ -69,6 +73,7 @@ string Room::displayItem() {
 int Room::numberOfItems() {
     return itemsInRoom.size();
 }
+
 
 int Room::isItemInRoom(string inString)
 {
@@ -80,7 +85,7 @@ int Room::isItemInRoom(string inString)
        int x = (0);
         for (int n = sizeItems; n > 0; n--) {
             // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare( itemsInRoom[x]->getShortDescription());
             if (tempFlag == 0) {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;

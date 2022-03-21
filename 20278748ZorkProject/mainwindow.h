@@ -4,6 +4,7 @@
 #include "Room.h"
 #include "item.h"
 #include "ZorkUL.h"
+#include "character.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -33,22 +34,25 @@ private slots:
 
     void on_SouthButton_clicked();
 
-    void on_MapButton_clicked();
-
     void on_TeleportButton_clicked();
 
+    void on_TakeButton_clicked();
+
+    void on_MapButton_released();
+
+    void on_MapButton_pressed();
+
+    void on_DropButton_clicked();
+
 private:
-    QString toQString(string s);
-    //QString printRooms();
-    //void go();
-    //void createRooms();
-    //void teleportRand();
-    void createTeleportBox();
-    Ui::MainWindow *ui;
-    //vector<Room*> rooms;
-    //Room *currentRoom;
-    string dir;
     QString imageDes;
+    QString toQString(string s);
+    void createInventoryBox();
+    void createTeleportBox();
+    void createItemBox();
+    void resetItemBox();
+    Ui::MainWindow *ui;
+    string dir;
     ZorkUL *zork;
 };
 #endif // MAINWINDOW_H

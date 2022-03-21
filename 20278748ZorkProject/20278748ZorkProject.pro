@@ -11,17 +11,23 @@ CONFIG += c++11
 SOURCES += \
     Room.cpp \
     ZorkUL.cpp \
+    character.cpp \
+    image.cpp \
     item.cpp \
     main.cpp \
     mainwindow.cpp \
+    player.cpp \
     tool.cpp \
     weapon.cpp
 
 HEADERS += \
     Room.h \
     ZorkUL.h \
+    character.h \
+    image.h \
     item.h \
     mainwindow.h \
+    player.h \
     tool.h \
     weapon.h
 

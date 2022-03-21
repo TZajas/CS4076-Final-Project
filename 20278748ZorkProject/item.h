@@ -7,25 +7,30 @@
 using namespace std;
 
 class Item {
-private:
-	string description;
+protected:
+    string description;
 	string longDescription;
 	int weightGrams;
 	float value;
-	bool weaponCheck;
+    bool dropped;
+    //bool weaponCheck;
 
 public:
     Item ();
-    Item (string description, int inWeight, float inValue, int weaponCheck);
+    Item (string description, float inWeight, float inValue /*int weaponCheck*/);
     Item (string description);
-	string getShortDescription();
-    string getLongDescription();
-	int getWeight();
+    template <typename T>
+        void setWeight(const T& weightGrams);
+    string getShortDescription();
+    virtual string getLongDescription();
+    bool isDropped() const;
+    void setDropped(bool dropped);
+    float getWeight();
 	void setWeight(int weightGrams);
 	float getValue();
 	void setValue(float value);
-	int getWeaponCheck();
-	void setWeaponCheck(int weaponCheck);
+    //int getWeaponCheck();
+    //void setWeaponCheck(int weaponCheck);
 };
 
 #endif /*ITEM_H_*/

@@ -54,14 +54,24 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../20278748ZorkProject/Room.cpp \
 		../20278748ZorkProject/ZorkUL.cpp \
+		../20278748ZorkProject/character.cpp \
+		../20278748ZorkProject/image.cpp \
 		../20278748ZorkProject/item.cpp \
 		../20278748ZorkProject/main.cpp \
-		../20278748ZorkProject/mainwindow.cpp moc_mainwindow.cpp
+		../20278748ZorkProject/mainwindow.cpp \
+		../20278748ZorkProject/player.cpp \
+		../20278748ZorkProject/tool.cpp \
+		../20278748ZorkProject/weapon.cpp moc_mainwindow.cpp
 OBJECTS       = Room.o \
 		ZorkUL.o \
+		character.o \
+		image.o \
 		item.o \
 		main.o \
 		mainwindow.o \
+		player.o \
+		tool.o \
+		weapon.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt/6.0.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.0.4/gcc_64/mkspecs/common/unix.conf \
@@ -177,12 +187,22 @@ DIST          = ../../../Qt/6.0.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.0.4/gcc_64/mkspecs/features/lex.prf \
 		../20278748ZorkProject/20278748ZorkProject.pro ../20278748ZorkProject/Room.h \
 		../20278748ZorkProject/ZorkUL.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/image.h \
 		../20278748ZorkProject/item.h \
-		../20278748ZorkProject/mainwindow.h ../20278748ZorkProject/Room.cpp \
+		../20278748ZorkProject/mainwindow.h \
+		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/tool.h \
+		../20278748ZorkProject/weapon.h ../20278748ZorkProject/Room.cpp \
 		../20278748ZorkProject/ZorkUL.cpp \
+		../20278748ZorkProject/character.cpp \
+		../20278748ZorkProject/image.cpp \
 		../20278748ZorkProject/item.cpp \
 		../20278748ZorkProject/main.cpp \
-		../20278748ZorkProject/mainwindow.cpp
+		../20278748ZorkProject/mainwindow.cpp \
+		../20278748ZorkProject/player.cpp \
+		../20278748ZorkProject/tool.cpp \
+		../20278748ZorkProject/weapon.cpp
 QMAKE_TARGET  = 20278748ZorkProject
 DESTDIR       = 
 TARGET        = 20278748ZorkProject
@@ -442,8 +462,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/6.0.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../20278748ZorkProject/Room.h ../20278748ZorkProject/ZorkUL.h ../20278748ZorkProject/item.h ../20278748ZorkProject/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../20278748ZorkProject/Room.cpp ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/item.cpp ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../20278748ZorkProject/Room.h ../20278748ZorkProject/ZorkUL.h ../20278748ZorkProject/character.h ../20278748ZorkProject/image.h ../20278748ZorkProject/item.h ../20278748ZorkProject/mainwindow.h ../20278748ZorkProject/player.h ../20278748ZorkProject/tool.h ../20278748ZorkProject/weapon.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../20278748ZorkProject/Room.cpp ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/character.cpp ../20278748ZorkProject/image.cpp ../20278748ZorkProject/item.cpp ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/player.cpp ../20278748ZorkProject/tool.cpp ../20278748ZorkProject/weapon.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../20278748ZorkProject/mainwindow.ui $(DISTDIR)/
 
 
@@ -481,7 +501,12 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/Room.h \
+		../20278748ZorkProject/weapon.h \
 		../20278748ZorkProject/item.h \
+		../20278748ZorkProject/image.h \
+		../20278748ZorkProject/ZorkUL.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/player.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -638,20 +663,38 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 Room.o: ../20278748ZorkProject/Room.cpp ../20278748ZorkProject/Room.h \
-		../20278748ZorkProject/item.h
+		../20278748ZorkProject/weapon.h \
+		../20278748ZorkProject/item.h \
+		../20278748ZorkProject/image.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Room.o ../20278748ZorkProject/Room.cpp
 
-ZorkUL.o: ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/ZorkUL.h \
+ZorkUL.o: ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/item.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/ZorkUL.h \
 		../20278748ZorkProject/Room.h \
-		../20278748ZorkProject/item.h
+		../20278748ZorkProject/weapon.h \
+		../20278748ZorkProject/image.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ZorkUL.o ../20278748ZorkProject/ZorkUL.cpp
+
+character.o: ../20278748ZorkProject/character.cpp ../20278748ZorkProject/character.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o character.o ../20278748ZorkProject/character.cpp
+
+image.o: ../20278748ZorkProject/image.cpp ../20278748ZorkProject/image.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o image.o ../20278748ZorkProject/image.cpp
 
 item.o: ../20278748ZorkProject/item.cpp ../20278748ZorkProject/item.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o item.o ../20278748ZorkProject/item.cpp
 
 main.o: ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/Room.h \
+		../20278748ZorkProject/weapon.h \
 		../20278748ZorkProject/item.h \
+		../20278748ZorkProject/image.h \
+		../20278748ZorkProject/ZorkUL.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/player.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -793,7 +836,12 @@ main.o: ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.h \
 
 mainwindow.o: ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/Room.h \
+		../20278748ZorkProject/weapon.h \
 		../20278748ZorkProject/item.h \
+		../20278748ZorkProject/image.h \
+		../20278748ZorkProject/ZorkUL.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/player.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -933,16 +981,56 @@ mainwindow.o: ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/mainw
 		../../../Qt/6.0.4/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt/6.0.4/gcc_64/include/QtGui/qinputmethod.h \
 		../../../Qt/6.0.4/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QComboBox \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/6.0.4/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/6.0.4/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/6.0.4/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt/6.0.4/gcc_64/include/QtGui/qpicture.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMenuBar \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmenu.h \
 		../../../Qt/6.0.4/gcc_64/include/QtGui/qaction.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QStatusBar \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/6.0.4/gcc_64/include/QtGui/QPixmap \
-		../20278748ZorkProject/ZorkUL.h
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QLayout \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../20278748ZorkProject/mainwindow.cpp
+
+player.o: ../20278748ZorkProject/player.cpp ../20278748ZorkProject/player.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../20278748ZorkProject/player.cpp
+
+tool.o: ../20278748ZorkProject/tool.cpp ../20278748ZorkProject/tool.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tool.o ../20278748ZorkProject/tool.cpp
+
+weapon.o: ../20278748ZorkProject/weapon.cpp ../20278748ZorkProject/weapon.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o weapon.o ../20278748ZorkProject/weapon.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

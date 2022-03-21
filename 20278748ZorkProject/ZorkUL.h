@@ -4,6 +4,8 @@
 
 #include "Room.h"
 #include "item.h"
+#include "character.h"
+#include "player.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,6 +14,7 @@ class ZorkUL {
 private:
     //Parser parser;
     Room *currentRoom;
+    Player *p1;
     vector<Room*> rooms;
     void createRooms();
    // bool processCommand(Command command);
@@ -35,6 +38,12 @@ public:
     {
         return rooms;
     }
+
+    inline Player* getPlayer()
+    {
+        return p1;
+    }
+
     string printRooms();
     string printWelcome();
     string dir;

@@ -1,10 +1,14 @@
 #include <iostream>
+#include "item.h"
+#include "character.h"
+#include "player.h"
 
 using namespace std;
 #include "ZorkUL.h"
 
 ZorkUL::ZorkUL() {
     createRooms();
+    p1 = new Player("Player1");
 }
 
 ZorkUL::~ZorkUL(){
@@ -18,28 +22,38 @@ inline void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
 
     a = new Room("a");
-        a->addItem(new Item("x", 1, 11));
-        a->addItem(new Item("y", 2, 22));
+        a->addItem(new Weapon("x", 1, 22.0, 2, 4));
+        a->addItem(new Weapon("y", 2, 22, 4, 5));
+        a->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/a.jpg"));
     rooms.push_back(a);
     b = new Room("b");
-        b->addItem(new Item("x", 3, 33));
-        b->addItem(new Item("yy", 4, 44));
+        b->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/b.jpg"));
+        b->addItem(new Weapon("x", 3, 33, 6, 7));
+        b->addItem(new Weapon("yy", 4, 44, 8, 9));
     rooms.push_back(b);
     c = new Room("c");
+        c->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/c.jpg"));
     rooms.push_back(c);
     d = new Room("d");
+        d->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/d.jpg"));
     rooms.push_back(d);
     e = new Room("e");
+        e->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/e.jpg"));
     rooms.push_back(e);
     f = new Room("f");
+        f->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/f.jpg"));
     rooms.push_back(f);
     g = new Room("g");
+        g->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/g.jpg"));
     rooms.push_back(g);
     h = new Room("h");
+        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/h.jpg"));
     rooms.push_back(h);
     i = new Room("i");
+        i->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/i.jpg"));
     rooms.push_back(i);
     newRoom = new Room("j");
+        newRoom->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/j.jpg"));
     rooms.push_back(newRoom);
 
 //             (N, E, S, W)
@@ -57,8 +71,10 @@ inline void ZorkUL::createRooms()  {
 }
 
 /**
- *  Main play routine.  Loops until end of play.
+ *  Main play routine.  L#ifndef PLAYER_H
+#define PLAYER_Hoops until end of play.
  */
+
 void ZorkUL::play() {
     printWelcome();
 
@@ -74,7 +90,23 @@ void ZorkUL::play() {
         // Free the memory allocated by "parser.getCommand()"
         //   with ("return new Command(...)")
         delete command;
+    };
+            }
+        }
+    return tempString;
     }
+
+int Room::numberOfItems() {
+    return itemsInRoom.size();
+}
+
+int Room::isItemInRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (
     cout << endl;
     cout << "end" << endl;*/
 }
@@ -99,6 +131,7 @@ string ZorkUL::printWelcome() {
         return false;
     }
 
+
     string commandWord = command.getCommandWord();
     if (commandWord.compare("info") == 0)
         printHelp();
@@ -110,7 +143,23 @@ string ZorkUL::printWelcome() {
         cout << "         |         " << endl;
         cout << "[c] --- [a] --- [b]" << endl;
         cout << "         |         " << endl;
-        cout << "         |         " << endl;
+        cout << "    ;
+            }
+        }
+    return tempString;
+    }
+
+int Room::numberOfItems() {
+    return itemsInRoom.size();
+}
+
+int Room::isItemInRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (     |         " << endl;
         cout << "[i] --- [d] --- [e]" << endl;
         cout << "         |         " << endl;
         cout << "         |         " << endl;
@@ -123,7 +172,23 @@ string ZorkUL::printWelcome() {
     else if (commandWord.compare("take") == 0)
     {
         if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
+        cout << "in;
+            }
+        }
+    return tempString;
+    }
+
+int Room::numberOfItems() {
+    return itemsInRoom.size();
+}
+
+int Room::isItemInRoom(string inString)
+{
+    int sizeItems = (itemsInRoom.size());
+    if (itemsInRoom.size() < 1) {
+        return false;
+        }
+    else if (complete input"<< endl;
         }
         else
          if (command.hasSecondWord()) {
