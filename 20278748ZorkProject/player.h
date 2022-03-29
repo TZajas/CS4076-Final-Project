@@ -14,6 +14,7 @@ public:
     void emptyInventory();
     void removeItem(Item *item);
     virtual void setHealth(int setHealth);
+    virtual int getHealth();
     vector <Item*>itemsInCharacter;
 
 };

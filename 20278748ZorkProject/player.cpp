@@ -43,3 +43,7 @@ void Player::setHealth(int setHealth){
         //character death;
     }
 }
+
+int Player::getHealth(){
+    return this->health;
+}

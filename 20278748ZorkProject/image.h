@@ -8,6 +8,7 @@ class Image
 public:
     Image(string img);
     string getImage();
+private:
     string image;
 };
 

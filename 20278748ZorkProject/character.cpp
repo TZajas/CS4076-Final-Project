@@ -5,21 +5,26 @@ Character::Character(string description) {
     this->health = 100;
 }
 
-/*void Character::addItems(Item *item) {
-    itemsInCharacter.push_back(*item);
-}*/
+Character::~Character() {
+   ;
+}
 
-/*string Character::longDescription()
-{
-  string ret = this->description;
-  ret += "\n Item list:\n";
-  for (vector<Item>::iterator i = itemsInCharacter.begin(); i != itemsInCharacter.end(); i++)
-    ret += "\t"+ (*i).getLongDescription() + "\n";
-  return ret;
+void Character::setHealth(int setHealth){
+    this->health=setHealth;
 }
 
 int Character::getHealth(){
     return this->health;
-}*/
+}
+
+
+void Character::operator--() {
+    this->health = health - 20;
+}
+
+//4. Unary Operator Overloading
+void Character::operator++() {
+    this->health = health + 20;
+}
 
 

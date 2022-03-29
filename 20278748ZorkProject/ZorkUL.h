@@ -12,14 +12,11 @@ using namespace std;
 
 class ZorkUL {
 private:
-    //Parser parser;
     Room *currentRoom;
     Player *p1;
     vector<Room*> rooms;
     void createRooms();
-   // bool processCommand(Command command);
     void printHelp();
-   // void goRoom(Command command);
     void createItems();
     void displayItems();
 

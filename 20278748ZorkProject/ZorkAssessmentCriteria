@@ -1,0 +1,45 @@
+virtual functions -- Done
+
+template classes -- Done 
+
+multiple inheritance --Not done
+
+namespaces -- Not done
+
+Programmer defined exceptions -- Not done
+
+Unions -- Not done
+
+Operator overloading -- Not done
+
+Abstract classes -- Done
+
+Copy constructors (deep , shallow copy) -- Not done
+
+Bit structures -- not done
+
+Advanced pre-processor directives -- not done
+
+C++ Object Construction Sequence -- not done
+
+Initializer List -- Done
+
+C++ References -- Done
+
+Pointers -- Done
+
+Inheritance -- Done 
+
+Destructors -- Done
+
+Memory management - Maybe
+
+Header files (inclusion guards) -- Done
+
+Arrays and pointers -- Not done
+
+Friendship -- not done
+
+Global variables -- Done
+
+Private, Public, Protected -- Done

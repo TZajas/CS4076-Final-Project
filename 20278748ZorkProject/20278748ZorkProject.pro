@@ -12,24 +12,30 @@ SOURCES += \
     Room.cpp \
     ZorkUL.cpp \
     character.cpp \
+    enemy.cpp \
     image.cpp \
     item.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
     tool.cpp \
-    weapon.cpp
+    weapon.cpp \
+    wordle.cpp \
+    zombie.cpp
 
 HEADERS += \
     Room.h \
     ZorkUL.h \
     character.h \
+    enemy.h \
     image.h \
     item.h \
     mainwindow.h \
     player.h \
     tool.h \
-    weapon.h
+    weapon.h \
+    wordle.h \
+    zombie.h
 
 FORMS += \
     mainwindow.ui
@@ -38,3 +44,8 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    ZorkAssessmentCriteria \
+    wordle_guesses.txt \
+    wordle_solutions.txt

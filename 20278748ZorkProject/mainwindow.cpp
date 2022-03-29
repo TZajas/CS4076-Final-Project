@@ -202,7 +202,7 @@ void MainWindow::on_DropButton_clicked()
     QString str = ui->InventoryBox->currentText();
     std::string curItem = str.toStdString();
     for(int i=0;i<zork->getPlayer()->itemsInCharacter.size();i++){
-        if(zork->getPlayer()->itemsInCharacter.at(i)->getShortDescription() == curItem){
+        if(zork->getPlayer()->itemsInCharacter.at(i)->getLongDescription() == curItem){
             zork->getPlayer()->removeItem(zork->getPlayer()->itemsInCharacter.at(i));
             ui->InventoryBox->removeItem(ui->InventoryBox->currentIndex());
         }

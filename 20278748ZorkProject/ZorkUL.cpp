@@ -77,38 +77,6 @@ inline void ZorkUL::createRooms()  {
 
 void ZorkUL::play() {
     printWelcome();
-
-    // Enter the main command loop.  Here we repeatedly read commands and
-    // execute them until the ZorkUL game is over.
-
-    /*bool finished = false;
-    while (!finished) {
-        // Create pointer to command and give it a command.
-        Command* command = parser.getCommand();
-        // Pass dereferenced command and check for end of game.
-        finished = processCommand(*command);
-        // Free the memory allocated by "parser.getCommand()"
-        //   with ("return new Command(...)")
-        delete command;
-    };
-            }
-        }
-    return tempString;
-    }
-
-int Room::numberOfItems() {
-    return itemsInRoom.size();
-}
-
-int Room::isItemInRoom(string inString)
-{
-    int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
-        return false;
-        }
-    else if (
-    cout << endl;
-    cout << "end" << endl;*/
 }
 
 string ZorkUL::printWelcome() {
@@ -294,8 +262,6 @@ void ZorkUL::goRoom(string direction){
         currentRoom = nextRoom;
     }
 }
-
-
 
 void ZorkUL::teleport(){
         unsigned int roomSize = rooms.size();

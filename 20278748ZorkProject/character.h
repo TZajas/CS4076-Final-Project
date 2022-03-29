@@ -11,12 +11,13 @@ class Character {
 protected:
     string description;
     int health;
-    //vector <Item> itemsInCharacter;
     virtual void setHealth(int setHealth) = 0;
-    //virtual void setStamina(int stamina) = 0;
-    int getHealth();
+    virtual int getHealth() = 0;
 public:
     Character(string description);
+    ~Character();
+    void operator--();
+    void operator++();
     //void addItems(Item *item);
     //string shortDescription();
     //string longDescription();
