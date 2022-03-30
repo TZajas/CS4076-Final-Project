@@ -14,6 +14,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -41,6 +42,7 @@ public:
     QLabel *inventory_label;
     QComboBox *InventoryBox;
     QPushButton *DropButton;
+    QLineEdit *wordleEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -48,7 +50,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1235, 720);
+        MainWindow->resize(1272, 720);
         QPalette palette;
         QBrush brush(QColor(0, 0, 0, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -942,10 +944,13 @@ public:
         palette13.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
         DropButton->setPalette(palette13);
         DropButton->setFont(font2);
+        wordleEdit = new QLineEdit(centralwidget);
+        wordleEdit->setObjectName(QString::fromUtf8("wordleEdit"));
+        wordleEdit->setGeometry(QRect(370, 550, 201, 25));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1235, 22));
+        menubar->setGeometry(QRect(0, 0, 1272, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -970,6 +975,7 @@ public:
         TakeButton->setText(QCoreApplication::translate("MainWindow", "Take Item", nullptr));
         inventory_label->setText(QCoreApplication::translate("MainWindow", "Inventory", nullptr));
         DropButton->setText(QCoreApplication::translate("MainWindow", "Drop Current Item", nullptr));
+        wordleEdit->setText(QString());
     } // retranslateUi
 
 };

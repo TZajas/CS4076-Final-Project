@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1235</width>
+    <width>1272</width>
     <height>720</height>
    </rect>
   </property>
@@ -6390,13 +6390,26 @@
      <string>Drop Current Item</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="wordleEdit">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>550</y>
+      <width>201</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1235</width>
+     <width>1272</width>
      <height>22</height>
     </rect>
    </property>

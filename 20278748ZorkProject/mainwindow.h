@@ -7,6 +7,7 @@
 #include "character.h"
 #include <iostream>
 #include <string>
+#include "wordle.h"
 using namespace std;
 
 #include <QMainWindow>
@@ -44,6 +45,8 @@ private slots:
 
     void on_DropButton_clicked();
 
+    void on_wordleEdit_returnPressed();
+
 private:
     QString imageDes;
     QString toQString(string s);
@@ -54,5 +57,8 @@ private:
     Ui::MainWindow *ui;
     string dir;
     ZorkUL *zork;
+    Wordle *wordle;
+    QString wordleInput;
+
 };
 #endif // MAINWINDOW_H

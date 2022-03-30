@@ -1,13 +1,17 @@
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
-#include "character.h"
 #include "enemy.h"
-#include "weapon.h"
 
-class Zombie : public Character, public Enemy
+class Zombie : public Enemy
 {
 public:
-    Zombie(string description, int damage, bool anger, int attackSpeed, Weapon weapon);
+    Zombie(int damage, bool anger, Item *heldItem);
+    Item dropItem();
+    void isDead();
+private:
+    int attackSpeed;
+    Item *droppedItem;
+    bool dead;
 };
 
 #endif // ZOMBIE_H

@@ -1,5 +1,9 @@
 #include "character.h"
 
+Character::Character(){
+    this->description="Unknown character";
+}
+
 Character::Character(string description) {
     this->description = description;
     this->health = 100;

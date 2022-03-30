@@ -1,11 +1,11 @@
 #ifndef ENEMY_H
 #define ENEMY_H
+#include "character.h"
 
-
-class Enemy
+class Enemy : public Character
 {
 public:
-    Enemy(int damage, bool angry);
+    Enemy(int damage, bool anger);
     int attack(bool angry);
     void setDamage(int damage);
     int getDamage();
@@ -13,7 +13,7 @@ public:
     bool getAnger();
 private:
     int damage;
-    bool angry;
+    bool anger;
 
 };
 

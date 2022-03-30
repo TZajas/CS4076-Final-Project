@@ -8,19 +8,21 @@ class Wordle
 {
 public:
     Wordle();
-
-private:
     void allowed_guesses(string fileName);
+    string start();
     void solution(string fileName);
     bool check_if_occurs(const string &guess);
     bool check_if_correct(const vector<string> &letterColour);
-    vector<string> checkLetter(const string &guess);
     string play(const string &guess);
+    string printNextLine();
     int guess_count;
-    string currentWord;
-    vector<string> guess_words;
-    bool game_won;
 
+    bool game_won;
+private:
+    vector<string> checkLetter(const string &guess);
+    string output;
+    string solutionWord;
+    vector<string> guess_words;
 };
 
 #endif // WORDLE_H

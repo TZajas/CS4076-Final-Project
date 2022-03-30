@@ -49,6 +49,7 @@ public:
     void play();
     void goRoom(string direction);
     void teleport();
+    void wordleRoom();
 };
 
 #endif /*ZORKUL_H_*/

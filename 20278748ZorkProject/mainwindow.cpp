@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
    // this->setStyleSheet("background-color: black;");
     ui->setupUi(this);
     zork = new ZorkUL();
+    wordle = new Wordle();
     ui->dir_label->setText(toQString(zork->printRooms()));
     imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
     updateImage(imageDes);
@@ -133,7 +134,10 @@ void MainWindow::on_SouthButton_clicked()
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
+    if(zork->getCurrentRoom()->wordleCheck){
 
+        ui->dir_label->setText(toQString(wordle->start()));
+    }
 }
 
 
@@ -151,11 +155,10 @@ void MainWindow::on_TeleportButton_clicked()
         zork->setCurrentRoom(rooms[pos]);
         ui->dir_label->setText(toQString(zork->printRooms()));
     }
+    ui->ItemBox->clear();
+    createItemBox();
     imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
     updateImage(imageDes);
-
-
-
 }
 
 
@@ -179,23 +182,16 @@ void MainWindow::on_TakeButton_clicked()
     }
 }
 
-
-
-
 void MainWindow::on_MapButton_released()
 {
     imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
     updateImage(imageDes);
 }
 
-
 void MainWindow::on_MapButton_pressed()
 {
     updateImage("/home/tomek/Pictures/minecraftWorld.jpg");
 }
-
-
-
 
 void MainWindow::on_DropButton_clicked()
 {
@@ -209,5 +205,15 @@ void MainWindow::on_DropButton_clicked()
     }
     int counter = zork->getPlayer()->itemsInCharacter.size();
     ui->inventorycounter->display(counter);
+}
+
+
+void MainWindow::on_wordleEdit_returnPressed()
+{
+      wordleInput= ui->wordleEdit->text();
+      ui->dir_label->setText(toQString(wordle->play(wordleInput.toStdString())));
+      if(wordle->game_won){
+          ui->dir_label->setText(toQString(zork->printRooms()));
+      }
 }
 

@@ -4,7 +4,7 @@
 
 class Weapon : public Item
 {
-private:
+protected:
     int damage;
     int attackSpeed;
 

@@ -2,7 +2,7 @@
 
 Enemy::Enemy(int damage, bool angry){
     this->damage=damage;
-    this->angry=angry;
+    this->anger=angry;
 }
 
 int Enemy::attack(bool angry){
@@ -21,10 +21,10 @@ void Enemy::setDamage(int damage){
 }
 
 bool Enemy::getAnger(){
-    return this->angry;
+    return this->anger;
 }
 
-void Enemy::setAnger(bool angry){
-    this->angry=angry;
+void Enemy::setAnger(bool anger){
+    this->anger=anger;
 }
 

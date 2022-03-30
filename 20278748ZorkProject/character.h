@@ -14,6 +14,7 @@ protected:
     virtual void setHealth(int setHealth) = 0;
     virtual int getHealth() = 0;
 public:
+    Character();
     Character(string description);
     ~Character();
     void operator--();

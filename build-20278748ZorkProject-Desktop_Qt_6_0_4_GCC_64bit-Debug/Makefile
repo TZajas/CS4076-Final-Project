@@ -55,6 +55,7 @@ OBJECTS_DIR   = ./
 SOURCES       = ../20278748ZorkProject/Room.cpp \
 		../20278748ZorkProject/ZorkUL.cpp \
 		../20278748ZorkProject/character.cpp \
+		../20278748ZorkProject/enemy.cpp \
 		../20278748ZorkProject/image.cpp \
 		../20278748ZorkProject/item.cpp \
 		../20278748ZorkProject/main.cpp \
@@ -62,10 +63,12 @@ SOURCES       = ../20278748ZorkProject/Room.cpp \
 		../20278748ZorkProject/player.cpp \
 		../20278748ZorkProject/tool.cpp \
 		../20278748ZorkProject/weapon.cpp \
-		../20278748ZorkProject/wordle.cpp moc_mainwindow.cpp
+		../20278748ZorkProject/wordle.cpp \
+		../20278748ZorkProject/zombie.cpp moc_mainwindow.cpp
 OBJECTS       = Room.o \
 		ZorkUL.o \
 		character.o \
+		enemy.o \
 		image.o \
 		item.o \
 		main.o \
@@ -74,8 +77,10 @@ OBJECTS       = Room.o \
 		tool.o \
 		weapon.o \
 		wordle.o \
+		zombie.o \
 		moc_mainwindow.o
-DIST          = ../20278748ZorkProject/wordle_guesses.txt \
+DIST          = ../20278748ZorkProject/ZorkAssessmentCriteria \
+		../20278748ZorkProject/wordle_guesses.txt \
 		../20278748ZorkProject/wordle_solutions.txt \
 		../../../Qt/6.0.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.0.4/gcc_64/mkspecs/common/unix.conf \
@@ -192,15 +197,18 @@ DIST          = ../20278748ZorkProject/wordle_guesses.txt \
 		../20278748ZorkProject/20278748ZorkProject.pro ../20278748ZorkProject/Room.h \
 		../20278748ZorkProject/ZorkUL.h \
 		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/enemy.h \
 		../20278748ZorkProject/image.h \
 		../20278748ZorkProject/item.h \
 		../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/player.h \
 		../20278748ZorkProject/tool.h \
 		../20278748ZorkProject/weapon.h \
-		../20278748ZorkProject/wordle.h ../20278748ZorkProject/Room.cpp \
+		../20278748ZorkProject/wordle.h \
+		../20278748ZorkProject/zombie.h ../20278748ZorkProject/Room.cpp \
 		../20278748ZorkProject/ZorkUL.cpp \
 		../20278748ZorkProject/character.cpp \
+		../20278748ZorkProject/enemy.cpp \
 		../20278748ZorkProject/image.cpp \
 		../20278748ZorkProject/item.cpp \
 		../20278748ZorkProject/main.cpp \
@@ -208,7 +216,8 @@ DIST          = ../20278748ZorkProject/wordle_guesses.txt \
 		../20278748ZorkProject/player.cpp \
 		../20278748ZorkProject/tool.cpp \
 		../20278748ZorkProject/weapon.cpp \
-		../20278748ZorkProject/wordle.cpp
+		../20278748ZorkProject/wordle.cpp \
+		../20278748ZorkProject/zombie.cpp
 QMAKE_TARGET  = 20278748ZorkProject
 DESTDIR       = 
 TARGET        = 20278748ZorkProject
@@ -468,8 +477,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/6.0.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../20278748ZorkProject/Room.h ../20278748ZorkProject/ZorkUL.h ../20278748ZorkProject/character.h ../20278748ZorkProject/image.h ../20278748ZorkProject/item.h ../20278748ZorkProject/mainwindow.h ../20278748ZorkProject/player.h ../20278748ZorkProject/tool.h ../20278748ZorkProject/weapon.h ../20278748ZorkProject/wordle.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../20278748ZorkProject/Room.cpp ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/character.cpp ../20278748ZorkProject/image.cpp ../20278748ZorkProject/item.cpp ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/player.cpp ../20278748ZorkProject/tool.cpp ../20278748ZorkProject/weapon.cpp ../20278748ZorkProject/wordle.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../20278748ZorkProject/Room.h ../20278748ZorkProject/ZorkUL.h ../20278748ZorkProject/character.h ../20278748ZorkProject/enemy.h ../20278748ZorkProject/image.h ../20278748ZorkProject/item.h ../20278748ZorkProject/mainwindow.h ../20278748ZorkProject/player.h ../20278748ZorkProject/tool.h ../20278748ZorkProject/weapon.h ../20278748ZorkProject/wordle.h ../20278748ZorkProject/zombie.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../20278748ZorkProject/Room.cpp ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/character.cpp ../20278748ZorkProject/enemy.cpp ../20278748ZorkProject/image.cpp ../20278748ZorkProject/item.cpp ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/player.cpp ../20278748ZorkProject/tool.cpp ../20278748ZorkProject/weapon.cpp ../20278748ZorkProject/wordle.cpp ../20278748ZorkProject/zombie.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../20278748ZorkProject/mainwindow.ui $(DISTDIR)/
 
 
@@ -686,6 +695,11 @@ ZorkUL.o: ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/item.h \
 character.o: ../20278748ZorkProject/character.cpp ../20278748ZorkProject/character.h \
 		../20278748ZorkProject/item.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o character.o ../20278748ZorkProject/character.cpp
+
+enemy.o: ../20278748ZorkProject/enemy.cpp ../20278748ZorkProject/enemy.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o enemy.o ../20278748ZorkProject/enemy.cpp
 
 image.o: ../20278748ZorkProject/image.cpp ../20278748ZorkProject/image.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o image.o ../20278748ZorkProject/image.cpp
@@ -1042,6 +1056,12 @@ weapon.o: ../20278748ZorkProject/weapon.cpp ../20278748ZorkProject/weapon.h \
 
 wordle.o: ../20278748ZorkProject/wordle.cpp ../20278748ZorkProject/wordle.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wordle.o ../20278748ZorkProject/wordle.cpp
+
+zombie.o: ../20278748ZorkProject/zombie.cpp ../20278748ZorkProject/zombie.h \
+		../20278748ZorkProject/enemy.h \
+		../20278748ZorkProject/character.h \
+		../20278748ZorkProject/item.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o zombie.o ../20278748ZorkProject/zombie.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

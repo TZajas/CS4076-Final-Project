@@ -2,11 +2,10 @@
 #define SWORD_H
 #include "weapon.h"
 
-
 class Sword : public Weapon
 {
 public:
-    Sword(string name);
+    Sword();
 };
 
 #endif // SWORD_H

@@ -7,6 +7,7 @@
 #include <vector>
 #include "item.h"
 #include "image.h"
+#include "wordle.h"
 using namespace std;
 using std::vector;
 
@@ -27,9 +28,11 @@ public:
     {
         return images;
     }
+    void addWordle(Wordle *wordle);
     vector <Image> images;
     int numberOfItems();
-	Room(string description);
+    Room(string description, bool wordleCheck);
+    bool wordleCheck;
 	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
 	string longDescription();

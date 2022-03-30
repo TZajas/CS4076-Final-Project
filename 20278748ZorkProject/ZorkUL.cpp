@@ -21,38 +21,38 @@ ZorkUL::~ZorkUL(){
 inline void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
 
-    a = new Room("a");
-        a->addItem(new Weapon("x", 1, 22.0, 2, 4));
-        a->addItem(new Weapon("y", 2, 22, 4, 5));
+    a = new Room("a", false);
+        a->addItem(new Weapon("Sword", 1, 22.0, 2, 4));
+        a->addItem(new Weapon("Dagger", 2, 22, 4, 5));
         a->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/a.jpg"));
     rooms.push_back(a);
-    b = new Room("b");
+    b = new Room("b", false);
         b->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/b.jpg"));
-        b->addItem(new Weapon("x", 3, 33, 6, 7));
-        b->addItem(new Weapon("yy", 4, 44, 8, 9));
+        b->addItem(new Weapon("Bow", 3, 33, 6, 7));
+        b->addItem(new Weapon("Hatchet", 4, 44, 8, 9));
     rooms.push_back(b);
-    c = new Room("c");
+    c = new Room("c", false);
         c->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/c.jpg"));
     rooms.push_back(c);
-    d = new Room("d");
+    d = new Room("d", false);
         d->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/d.jpg"));
     rooms.push_back(d);
-    e = new Room("e");
+    e = new Room("e", false);
         e->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/e.jpg"));
     rooms.push_back(e);
-    f = new Room("f");
+    f = new Room("f", false);
         f->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/f.jpg"));
     rooms.push_back(f);
-    g = new Room("g");
+    g = new Room("g", false);
         g->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/g.jpg"));
     rooms.push_back(g);
-    h = new Room("h");
+    h = new Room("h", false);
         h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/h.jpg"));
     rooms.push_back(h);
-    i = new Room("i");
+    i = new Room("i", false);
         i->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/i.jpg"));
     rooms.push_back(i);
-    newRoom = new Room("j");
+    newRoom = new Room("j", true);
         newRoom->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/j.jpg"));
     rooms.push_back(newRoom);
 
@@ -262,6 +262,8 @@ void ZorkUL::goRoom(string direction){
         currentRoom = nextRoom;
     }
 }
+
+
 
 void ZorkUL::teleport(){
         unsigned int roomSize = rooms.size();
