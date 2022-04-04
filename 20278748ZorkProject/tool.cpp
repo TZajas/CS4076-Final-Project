@@ -1,5 +1,4 @@
 #include "tool.h"
-#include <sstream>
 
 Tool::Tool(string name, int weight, float value, string use, int useSpeed) : Item(name, weight, value)
 {
@@ -24,7 +23,7 @@ string Tool::getUse(){
 }
 
 string Tool::getLongDescription(){
-       stringstream str;
-        str << "Tool: " << getShortDescription() << ", Value: " << to_string(getValue()) << endl << "Tool use: " << getUse() << endl << "Use Speed: " << getUseSpeed();
+        stringstream str;
+        str << "Tool: " << getShortDescription() << ", Value: " << to_string(getValue()) << "Tool use: " << getUse()<< "Use Speed: " << getUseSpeed();
         return str.str();
 }

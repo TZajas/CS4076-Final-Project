@@ -22,7 +22,12 @@ string Room::shortDescription() {
 }
 
 string Room::longDescription() {
-	return "room = " + description + ".\n" + displayItem() + exitString();
+    if(!(getCharacters().size()<1)){
+        return "Room = " + description + ".\n" + displayItem() + "\n" + "Enemy = " + getCharacters().at(0)->getDescription() + exitString();
+    }else{
+        return "Room = " + description + ".\n" + displayItem() + "\n" + exitString();
+
+    }
 }
 
 string Room::exitString() {
@@ -46,30 +51,31 @@ void Room::addImage(Image *img){
 }
 
 void Room::addItem(Item *inItem) {
-    //cout <<endl;
-    //cout << "Just added" + inItem->getLongDescription();
     itemsInRoom.push_back(inItem);
 }
-
+void Room::addCharacter(Character *character){
+    characters.push_back(character);
+}
 void Room::removeItemFromRoom(int location){
     itemsInRoom.erase(itemsInRoom.begin() + location);
 }
 
 string Room::displayItem() {
-    string tempString = "items in room: ";
+    string tempString = "Items in room: ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
-        tempString = "no items in room";
+        tempString = "No items in this room\n"
+                     "search somewhere else adventurer!";
         }
     else if (itemsInRoom.size() > 0) {
        int x = 0;
         for (int n = sizeItems; n > 0; n--) {
-            tempString = tempString + itemsInRoom[x]->getShortDescription() + "  " ;
+            tempString = tempString + " | " + itemsInRoom[x]->getShortDescription() + " | " ;
             x++;
             }
         }
     return tempString;
-    }
+}
 
 int Room::numberOfItems() {
     return itemsInRoom.size();

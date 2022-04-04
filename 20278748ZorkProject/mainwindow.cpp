@@ -1,12 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QPixmap>
-#include <QLayout>
-#include "ZorkUL.h"
-#include "Room.h"
-#include "item.h"
-#include <iostream>
-#include <QMessageBox>
+
 
 using namespace std;
 
@@ -18,7 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     zork = new ZorkUL();
     wordle = new Wordle();
-    ui->dir_label->setText(toQString(zork->printRooms()));
+    ui->dir_label->setText(toQString(GameOutputs::beginGame));
+    ui->wordleEdit->setVisible(false);
+    ui->WordleInputLabel->setVisible(false);
     imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
     updateImage(imageDes);
     createTeleportBox();
@@ -44,13 +40,13 @@ void MainWindow::createTeleportBox(){
 
 void MainWindow::createItemBox(){
     vector<Item*> item = zork->getCurrentRoom()->getItems();
-    for(int i=0; i<item.size(); i++){
+    for(int i=0; i< static_cast<int>(item.size()); i++){
         ui->ItemBox->addItem(toQString(item.at(i)->getShortDescription()));
     }
 }
 
 void MainWindow::createInventoryBox(){
-    for(int i=0; i<zork->getPlayer()->itemsInCharacter.size(); i++)
+    for(int i=0; i< static_cast<int>(zork->getPlayer()->itemsInCharacter.size()); i++)
         ui->InventoryBox->addItem(toQString(zork->getPlayer()->itemsInCharacter.at(i)->getShortDescription()));
 }
 
@@ -58,26 +54,6 @@ QString MainWindow::toQString(string s){
     QString str = QString::fromUtf8(s.c_str());
     return str;
 }
-
-/*void MainWindow::imageDestination(QString &pic){
-    vector<Room*>rooms = zork->getRooms();
-    string loc = "/home/tomek/Desktop/ZorkProject20278748/ProjectImages/";
-    string end = ".jpg";
-    int j=0;
-    string letter;
-    for(int i=97;i<=106;i++){
-        char c = i;
-        if(rooms[j] == zork->getCurrentRoom()){
-            string s(1, c);
-            string letter = s;
-            break;
-        }
-        j++;
-    }
-     //QString picture = toQString(loc + letter + end);
-
-     pic = toQString(letter);
-}*/
 
 //updates the image lable depending on location
 void MainWindow::updateImage(QString dest){
@@ -97,6 +73,7 @@ void MainWindow::on_NorthButton_clicked()
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
+    wordleCheck();
 }
 
 
@@ -110,6 +87,7 @@ void MainWindow::on_WestButton_clicked()
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
+    wordleCheck();
 }
 
 
@@ -122,25 +100,48 @@ void MainWindow::on_EastButton_clicked()
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
+    wordleCheck();
 }
 
 
 void MainWindow::on_SouthButton_clicked()
 {
-    dir = "south";
-    zork->goRoom(dir);
-    ui->dir_label->setText(toQString(zork->printRooms()));
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
-    updateImage(imageDes);
-    ui->ItemBox->clear();
-    createItemBox();
-    if(zork->getCurrentRoom()->wordleCheck){
-
-        ui->dir_label->setText(toQString(wordle->start()));
+    if(!zork->getCurrentRoom()->wordleCheck){
+        dir = "south";
+        zork->goRoom(dir);
+        ui->dir_label->setText(toQString(zork->printRooms()));
+        imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+        updateImage(imageDes);
+        ui->ItemBox->clear();
+        createItemBox();
+        /*if(zork->getCurrentRoom()->wordleCheck){
+            ui->wordleEdit->setVisible(true);
+            ui->dir_label->setText(toQString(GameOutputs::wordleBegin));
+        }else{
+            ui->wordleEdit->setVisible(false);
+        }*/
+        wordleCheck();
+    }else{
+        ;
     }
 }
 
 
+void MainWindow::wordleCheck(){
+
+    if(zork->getCurrentRoom()->wordleCheck && zork->getPlayer()->hasItem("Golden Key")){
+        ui->wordleEdit->setVisible(true);
+        ui->WordleInputLabel->setVisible(true);
+        ui->dir_label->setText(toQString(GameOutputs::wordleBegin));
+    }else{
+        if(zork->getCurrentRoom()->wordleCheck){
+            ui->dir_label->setText(toQString(GameOutputs::wordleHint));
+        }
+        ui->wordleEdit->setVisible(false);
+        ui->WordleInputLabel->setVisible(false);
+
+    }
+}
 
 //checks indexes from combo box to teleport player to random room or room of choice;
 void MainWindow::on_TeleportButton_clicked()
@@ -197,7 +198,7 @@ void MainWindow::on_DropButton_clicked()
 {
     QString str = ui->InventoryBox->currentText();
     std::string curItem = str.toStdString();
-    for(int i=0;i<zork->getPlayer()->itemsInCharacter.size();i++){
+    for(int i=0;i< static_cast<int>(zork->getPlayer()->itemsInCharacter.size());i++){
         if(zork->getPlayer()->itemsInCharacter.at(i)->getLongDescription() == curItem){
             zork->getPlayer()->removeItem(zork->getPlayer()->itemsInCharacter.at(i));
             ui->InventoryBox->removeItem(ui->InventoryBox->currentIndex());
@@ -207,13 +208,14 @@ void MainWindow::on_DropButton_clicked()
     ui->inventorycounter->display(counter);
 }
 
-
 void MainWindow::on_wordleEdit_returnPressed()
 {
       wordleInput= ui->wordleEdit->text();
       ui->dir_label->setText(toQString(wordle->play(wordleInput.toStdString())));
       if(wordle->game_won){
-          ui->dir_label->setText(toQString(zork->printRooms()));
+          ui->dir_label->setText(toQString(GameOutputs::beatWordle));
+          zork->getCurrentRoom()->wordleCheck = false;
+          ui->wordleEdit->setVisible(false);
       }
 }
 

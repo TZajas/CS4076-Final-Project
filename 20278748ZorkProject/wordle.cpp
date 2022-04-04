@@ -1,8 +1,4 @@
 #include "wordle.h"
-#include <iostream>
-#include <fstream>
-#include <ctime>
-#include <cstring>
 
 Wordle::Wordle()
 {
@@ -59,17 +55,17 @@ vector<string> Wordle::checkLetter(const string &guess){
     char preventDuplication='0';
     vector<string> letterColour(static_cast<int>(guess.size()));
     for(int i=0;i<5;i++){
-        letterColour.at(i) = "-";
+        letterColour.at(i) = " - ";
     }
     for(int i=0;i<static_cast<int>(guess.size());i++){
         for(int j = 0; j < static_cast<int>(solution.size()); j++)
             if(guess.at(i) == solution.at(j)){
                 if (guess.at(i) == solution.at(i)){
-                    letterColour.at(i) = "G";
+                    letterColour.at(i) = " G ";
                     solution.at(i) = preventDuplication;
                     break;
                 }else{
-                    letterColour.at(i) = "Y";
+                    letterColour.at(i) = " Y ";
                     solution.at(j) = preventDuplication;
                     break;
                 }
@@ -81,26 +77,23 @@ vector<string> Wordle::checkLetter(const string &guess){
 bool Wordle::check_if_correct(const vector<string> &letterColour){
     bool check = true;
     for(int i=0;i<5;i++){
-        if(letterColour.at(i) != "G"){
+        if(letterColour.at(i) != " G "){
             check = false;
         }
     }
     return check;
 }
 
-string Wordle::start(){
-    return "Please Enter a 5 letter word";
-}
-
 string Wordle::play(const string &guess){
     vector<string>letterColour;
 
-
     if(guess.length()>5 || guess.length()<5){
-        output = "incorrect word";
+        output = "incorrect word\n"
+                 "Please enter a 5 letter word";
         return output;
     }else if(!check_if_occurs(guess)){
-        output = "incorrect word";
+        output = "Incorrect Word\n"
+                 "Please enter a 5 letter word";
         return output;
     }else{
         letterColour = checkLetter(guess);
@@ -108,19 +101,21 @@ string Wordle::play(const string &guess){
             output = "Game won in ";
             string count = to_string(guess_count+1);
             game_won = true;
+
             return output + count;
         }else{
             guess_count++;
             string count = to_string(6-guess_count);
             if(guess_count>5){
                 game_won = false;
+
                 return "game lost";
             }
             output = "";
             for(int i=0;i<5;i++){
                 output = output + letterColour.at(i);
             }
-            output = output + "\n" + count + " guesses remaining" + "\n" + "guess again";
+            output = solutionWord + "\n" + output + "\n" + count + " guesses remaining" + "\n" + "guess again";
             return output;
         }
     }

@@ -1,13 +1,15 @@
 #ifndef ROOM_H_
 #define ROOM_H_
 
+#include "tool.h"
 #include "weapon.h"
 #include <map>
 #include <string>
 #include <vector>
-#include "item.h"
+//#include "item.h"
 #include "image.h"
 #include "wordle.h"
+#include "character.h"
 using namespace std;
 using std::vector;
 
@@ -18,7 +20,15 @@ private:
 	map<string, Room*> exits;
 	string exitString();
     vector <Item*> itemsInRoom;
-
+    vector <Image> images;
+    vector <Character*> characters;
+    void setExits(Room *north, Room *east, Room *south, Room *west);
+    void addImage(Image *img);
+    void addItem(Item *inItem);
+    void addCharacter(Character *character);
+    void addWordle(Wordle *wordle);
+    int isItemInRoom(string inString);
+    friend class ZorkUL;
 public:
     inline vector<Item*> getItems()
     {
@@ -28,23 +38,19 @@ public:
     {
         return images;
     }
-    void addWordle(Wordle *wordle);
-    vector <Image> images;
+
+    inline vector<Character*> getCharacters()
+    {
+        return characters;
+    }
     int numberOfItems();
     Room(string description, bool wordleCheck);
     bool wordleCheck;
-	void setExits(Room *north, Room *east, Room *south, Room *west);
 	string shortDescription();
-	string longDescription();
+    string longDescription();
 	Room* nextRoom(string direction);
-    Room* tpRoom();
-    void addImage(Image *img);
-    void addItem(Item *inItem);
-    void addWeapon(Weapon *inWeapon);
     string displayItem();
-    string displayWeapon();
     int numberOfWeapons();
-    int isItemInRoom(string inString);
     void removeItemFromRoom(int location);
 };
 

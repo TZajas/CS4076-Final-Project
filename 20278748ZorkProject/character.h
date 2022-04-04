@@ -1,24 +1,26 @@
 #ifndef CHARACTER_H_
 #define CHARACTER_H_
-#include "item.h"
 #include <string>
-using namespace std;
 #include <vector>
-using std::vector;
+#include "item.h"
+using namespace std;
 
-
-class Character {
+class Character
+{
 protected:
     string description;
     int health;
-    virtual void setHealth(int setHealth) = 0;
-    virtual int getHealth() = 0;
+    virtual void setHealth(int setHealth)=0;
+    int getHealth();
 public:
     Character();
     Character(string description);
-    ~Character();
+    virtual ~Character();
     void operator--();
     void operator++();
+    inline string getDescription(){
+        return description;
+    }
     //void addItems(Item *item);
     //string shortDescription();
     //string longDescription();

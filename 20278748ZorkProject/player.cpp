@@ -9,7 +9,9 @@ Player::~Player() {
 }
 
 void Player::addItems(Item *item) {
-    itemsInCharacter.push_back(item);
+    if(inventoryWeight()){
+        itemsInCharacter.push_back(item);
+    }
 }
 
 string Player::listItems()
@@ -26,10 +28,32 @@ void Player::emptyInventory(){
 }
 
 void Player::removeItem(Item *item){
-    for(int i=0; i<itemsInCharacter.size(); i++){
+    for(int i=0; i< static_cast<int>(itemsInCharacter.size()); i++){
         if(itemsInCharacter.at(i) == item){
               itemsInCharacter.erase(itemsInCharacter.begin() + i);
         }
+    }
+}
+
+bool Player::hasItem(string item){
+    for(int i=0; i< static_cast<int>(itemsInCharacter.size());i++){
+        if(item == itemsInCharacter.at(i)->getShortDescription()){
+
+           return true;
+        }
+    }
+    return false;
+}
+
+bool Player::inventoryWeight(){
+    int weight=0;
+    for(int i=0; i< static_cast<int>(itemsInCharacter.size());i++){
+        weight = weight + itemsInCharacter.at(i)->getWeight();
+    }
+    if(weight>50){
+        return false;
+    }else{
+        return true;
     }
 }
 
@@ -42,8 +66,4 @@ void Player::setHealth(int setHealth){
     if(this->health<=0){
         //character death;
     }
-}
-
-int Player::getHealth(){
-    return this->health;
 }

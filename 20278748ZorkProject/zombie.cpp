@@ -11,7 +11,7 @@ Zombie::Zombie(int damage, bool angry, Item *heldItem) : Enemy(damage, angry)
 
 Item Zombie::dropItem(){
     if(dead)
-    return *droppedItem;
+        return *droppedItem;
 }
 
 void Zombie::isDead(){

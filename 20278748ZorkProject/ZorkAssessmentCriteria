@@ -1,8 +1,11 @@
 virtual functions -- Done
+Item/Weapon/Tool/Character/Player/Enemy
 
 template classes -- Done 
+Item
 
-multiple inheritance --Not done
+multiple inheritance -- Done
+Character/Enemy/Zombie classes
 
 namespaces -- Not done
 
@@ -11,8 +14,10 @@ Programmer defined exceptions -- Not done
 Unions -- Not done
 
 Operator overloading -- Not done
+Character
 
 Abstract classes -- Done
+Character
 
 Copy constructors (deep , shallow copy) -- Not done
 
@@ -20,26 +25,36 @@ Bit structures -- not done
 
 Advanced pre-processor directives -- not done
 
-C++ Object Construction Sequence -- not done
+C++ Object Construction Sequence -- Done
+Item/Weapon/Tool
 
 Initializer List -- Done
+Item/Player/Tool/Weapon/Enemy/Zombie classes
 
 C++ References -- Done
+All throughout code
 
 Pointers -- Done
+All throughout code
 
 Inheritance -- Done 
+Item/Weapon/Tool classes
 
 Destructors -- Done
+Item(virtual destructor)/Character/Enemy/Player
 
 Memory management - Maybe
 
 Header files (inclusion guards) -- Done
+All header files
 
 Arrays and pointers -- Not done
 
 Friendship -- not done
+Item/Room
 
 Global variables -- Done
+MainWindow
 
 Private, Public, Protected -- Done
+All throughout code

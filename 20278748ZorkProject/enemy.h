@@ -11,9 +11,13 @@ public:
     int getDamage();
     void setAnger(bool angry);
     bool getAnger();
+    void isDead();
+    bool deathStatus();
+    virtual void setHealth(int health);
 private:
     int damage;
     bool anger;
+    bool dead;
 
 };
 

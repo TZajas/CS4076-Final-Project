@@ -13,6 +13,7 @@ SOURCES += \
     ZorkUL.cpp \
     character.cpp \
     enemy.cpp \
+    gameoutputs.cpp \
     image.cpp \
     item.cpp \
     main.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     ZorkUL.h \
     character.h \
     enemy.h \
+    gameoutputs.h \
     image.h \
     item.h \
     mainwindow.h \

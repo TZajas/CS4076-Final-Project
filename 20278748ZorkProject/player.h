@@ -13,10 +13,11 @@ public:
     string shortDescription();
     void emptyInventory();
     void removeItem(Item *item);
+    bool hasItem(string item);
     virtual void setHealth(int setHealth);
-    virtual int getHealth();
     vector <Item*>itemsInCharacter;
-
+private:
+    bool inventoryWeight();
 };
 
 #endif //PLAYER_H

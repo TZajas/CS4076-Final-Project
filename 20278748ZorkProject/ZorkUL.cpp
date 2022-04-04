@@ -1,7 +1,4 @@
 #include <iostream>
-#include "item.h"
-#include "character.h"
-#include "player.h"
 
 using namespace std;
 #include "ZorkUL.h"
@@ -12,49 +9,66 @@ ZorkUL::ZorkUL() {
 }
 
 ZorkUL::~ZorkUL(){
-    for(int i=0;i<rooms.size();i++){
+    for(int i=0;i< static_cast<int>(rooms.size());i++){
         delete rooms[i];
     }
 }
 
 //intialises the rooms in the map and adds them to vector
 inline void ZorkUL::createRooms()  {
-    Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom;
+    Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *newRoom, *wordleRoom;
 
     a = new Room("a", false);
-        a->addItem(new Weapon("Sword", 1, 22.0, 2, 4));
-        a->addItem(new Weapon("Dagger", 2, 22, 4, 5));
+        a->addItem(new Weapon("Dagger", 10, 5, 4, 2));
         a->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/a.jpg"));
     rooms.push_back(a);
+
     b = new Room("b", false);
         b->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/b.jpg"));
-        b->addItem(new Weapon("Bow", 3, 33, 6, 7));
-        b->addItem(new Weapon("Hatchet", 4, 44, 8, 9));
+        b->addItem(new Tool("Hoe", 10, 5.0, "Loosen soil", 2));
+        b->addItem(new Weapon("Hatchet", 12, 7, 6, 1.5));
     rooms.push_back(b);
+
     c = new Room("c", false);
         c->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/c.jpg"));
     rooms.push_back(c);
+
     d = new Room("d", false);
         d->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/d.jpg"));
     rooms.push_back(d);
+
     e = new Room("e", false);
         e->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/e.jpg"));
     rooms.push_back(e);
+
     f = new Room("f", false);
         f->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/f.jpg"));
     rooms.push_back(f);
+
     g = new Room("g", false);
+        a->addItem(new Weapon("Sword", 20, 40.0, 28, 0.75));
         g->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/g.jpg"));
     rooms.push_back(g);
+
     h = new Room("h", false);
-        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/h.jpg"));
+        //Weapon *axe = new Weapon("Axe", 20, 22.0, 25, 1.2);
+        h->addCharacter(new Zombie(25, true, new Item("Key Number 1", 5, 100)));
+        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/zombie.jpg"));
     rooms.push_back(h);
+
     i = new Room("i", false);
         i->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/i.jpg"));
+        i->addItem(new Item("Golden Key", 5, 100));
     rooms.push_back(i);
+
     newRoom = new Room("j", true);
         newRoom->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/j.jpg"));
     rooms.push_back(newRoom);
+
+    wordleRoom = new Room("Treasure Room", false);
+        wordleRoom->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/k.png"));
+    rooms.push_back(wordleRoom);
+
 
 //             (N, E, S, W)
     a->setExits(f, b, d, c);
@@ -66,14 +80,10 @@ inline void ZorkUL::createRooms()  {
     g->setExits(NULL, NULL, NULL, f);
     h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
-    newRoom->setExits(d, NULL, NULL, NULL);
+    newRoom->setExits(d, NULL, wordleRoom, NULL);
+    wordleRoom->setExits(newRoom, NULL, NULL, NULL);
     currentRoom = a;
 }
-
-/**
- *  Main play routine.  L#ifndef PLAYER_H
-#define PLAYER_Hoops until end of play.
- */
 
 void ZorkUL::play() {
     printWelcome();
@@ -85,166 +95,7 @@ string ZorkUL::printWelcome() {
     string l = "\n";
     string c =  currentRoom->longDescription();
     return w + e + l + c;
-
 }
-
-/**
- * Given a command, process (that is: execute) the command.
- * If this command ends the ZorkUL game, true is returned, otherwise false is
- * returned.
- */
-/*bool ZorkUL::processCommand(Command command) {
-    if (command.isUnknown()) {
-        cout << "invalid input"<< endl;
-        return false;
-    }
-
-
-    string commandWord = command.getCommandWord();
-    if (commandWord.compare("info") == 0)
-        printHelp();
-
-    else if (commandWord.compare("map") == 0)
-        {
-        cout << "[h] --- [f] --- [g]" << endl;
-        cout << "         |         " << endl;
-        cout << "         |         " << endl;
-        cout << "[c] --- [a] --- [b]" << endl;
-        cout << "         |         " << endl;
-        cout << "    ;
-            }
-        }
-    return tempString;
-    }
-
-int Room::numberOfItems() {
-    return itemsInRoom.size();
-}
-
-int Room::isItemInRoom(string inString)
-{
-    int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
-        return false;
-        }
-    else if (     |         " << endl;
-        cout << "[i] --- [d] --- [e]" << endl;
-        cout << "         |         " << endl;
-        cout << "         |         " << endl;
-        cout << "        [newRoom]        " << endl;
-        }
-
-    else if (commandWord.compare("go") == 0)
-        goRoom(command);
-
-    else if (commandWord.compare("take") == 0)
-    {
-        if (!command.hasSecondWord()) {
-        cout << "in;
-            }
-        }
-    return tempString;
-    }
-
-int Room::numberOfItems() {
-    return itemsInRoom.size();
-}
-
-int Room::isItemInRoom(string inString)
-{
-    int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
-        return false;
-        }
-    else if (complete input"<< endl;
-        }
-        else
-         if (command.hasSecondWord()) {
-        cout << "you're trying to take " + command.getSecondWord() << endl;
-        int location = currentRoom->isItemInRoom(command.getSecondWord());
-        if (location  < 0 )
-            cout << "item is not in room" << endl;
-        else
-            cout << "item is in room" << endl;
-            cout << "index number " << + location << endl;
-            cout << endl;
-            cout << currentRoom->longDescription() << endl;
-        }
-    }
-    else if (commandWord.compare("teleport") == 0)
-    {
-        if (!command.hasSecondWord()){
-            cout << "incomplete input" << endl;
-        }
-        else{
-            teleport(command.getSecondWord());
-            cout << currentRoom->longDescription() << endl;
-        }
-    }
-
-    else if (commandWord.compare("put") == 0)
-    {
-
-    }
-
-    {
-    if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        }
-        else
-            if (command.hasSecondWord()) {
-            cout << "you're adding " + command.getSecondWord() << endl;
-            itemsInRoom.push_Back;
-        }
-    }
-
-    else if (commandWord.compare("quit") == 0) {
-        if (command.hasSecondWord())
-            cout << "overdefined input"<< endl;
-        else
-            return true; //signal to quit
-    }
-    return false;
-}*/
-/** COMMANDS **/
-/*void ZorkUL::printHelp() {
-    cout << "valid inputs are; " << endl;
-    parser.showCommands();
-
-}*/
-
-/*void ZorkUL::goRoom(Command command) {
-    if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        return;
-    }
-
-    string direction = command.getSecondWord();
-
-    // Try to leave current room.
-    Room* nextRoom = currentRoom->nextRoom(direction);
-
-    if (nextRoom == NULL)
-        cout << "underdefined input"<< endl;
-    else {
-        currentRoom = nextRoom;
-        cout << currentRoom->longDescription() << endl;
-    }
-}*/
-
-/*string ZorkUL::go(string direction) {
-    //Make the direction lowercase
-    //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    //Move to the next room
-    Room* nextRoom = currentRoom->nextRoom(direction);
-    if (nextRoom == NULL)
-        return("direction null");
-    else
-    {
-        currentRoom = nextRoom;
-        return currentRoom->longDescription();
-    }
-}*/
 
 string ZorkUL::printRooms(){
     string des;
@@ -256,14 +107,12 @@ string ZorkUL::printRooms(){
 void ZorkUL::goRoom(string direction){
     Room* nextRoom = currentRoom->nextRoom(direction);
     if (nextRoom == NULL)
-        currentRoom;
+        ;
     else
     {
         currentRoom = nextRoom;
     }
 }
-
-
 
 void ZorkUL::teleport(){
         unsigned int roomSize = rooms.size();

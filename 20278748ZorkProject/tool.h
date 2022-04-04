@@ -2,7 +2,7 @@
 #define TOOL_H
 #include "item.h"
 
-class Tool : Item
+class Tool : public Item
 {
 public:
     Tool(string name, int weight, float value, string use, int useSpeed);

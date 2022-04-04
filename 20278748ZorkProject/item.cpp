@@ -20,28 +20,22 @@ Item::~Item(){
 
 }
 
-template <typename T>
-void Item::setWeight(const T& inWeightGrams)
-{
-    if (inWeightGrams > 9999 || inWeightGrams < 0)
-       cout << "weight invalid, must be 0<weight<9999" ;
-    else
-       weightGrams = inWeightGrams;
-}
-
 template void Item::setWeight<int>(const int&);
 template void Item::setWeight<float>(const float&);
+template void Item::setValue<int>(const int&);
+template void Item::setValue<float>(const float&);
 
+template <typename T>
+void Item::setWeight(const T& inWeightGrams){
+       weightGrams = inWeightGrams;
+}
 
 float Item::getWeight(){
     return weightGrams;
 }
 
-void Item::setValue(float inValue)
-{
-    if (inValue > 9999 || inValue < 0)
-       cout << "value invalid, must be 0<value<9999" ;
-    else
+template <typename T>
+void Item::setValue(const T& inValue){
 	   value = inValue;
 }
 
@@ -69,7 +63,7 @@ string Item::getShortDescription()
 string Item::getLongDescription()
 {
     stringstream str;
-    str<< "Item: " << getShortDescription() << "Value: " << to_string(getValue()) << "Weight: " << getWeight();
+    str<< "Item: " << getShortDescription() << " | Value: " << to_string(getValue()) << " | Weight: " << getWeight();
     return str.str();
 }
 

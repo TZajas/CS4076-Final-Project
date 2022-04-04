@@ -1,13 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "Room.h"
-#include "item.h"
 #include "ZorkUL.h"
-#include "character.h"
+#include "wordle.h"
+#include "gameoutputs.h"
 #include <iostream>
 #include <string>
-#include "wordle.h"
+#include <QMessageBox>
+#include <QPixmap>
+#include <QLayout>
 using namespace std;
 
 #include <QMainWindow>
@@ -54,6 +55,7 @@ private:
     void createTeleportBox();
     void createItemBox();
     void resetItemBox();
+    void wordleCheck();
     Ui::MainWindow *ui;
     string dir;
     ZorkUL *zork;

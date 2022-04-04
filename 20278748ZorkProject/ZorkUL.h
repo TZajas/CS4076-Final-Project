@@ -1,10 +1,9 @@
 #ifndef ZORKUL_H_
 #define ZORKUL_H_
 
-
 #include "Room.h"
 #include "item.h"
-#include "character.h"
+#include "zombie.h"
 #include "player.h"
 #include <iostream>
 #include <string>
@@ -12,6 +11,7 @@ using namespace std;
 
 class ZorkUL {
 private:
+    friend class Wordle;
     Room *currentRoom;
     Player *p1;
     vector<Room*> rooms;
