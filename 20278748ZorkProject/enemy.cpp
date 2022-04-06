@@ -1,9 +1,13 @@
 #include "enemy.h"
 
-Enemy::Enemy(int damage, bool angry){
+Enemy::Enemy(string description, int health, int damage, bool angry) : Character(description, health){
     this->damage=damage;
     this->anger=angry;
-    this->dead = false;
+    //this->dead = false;
+}
+
+Enemy::~Enemy(){
+
 }
 
 int Enemy::attack(bool angry){
@@ -36,14 +40,3 @@ void Enemy::setHealth(int health){
         this->health = 150;
     }
 }
-
-bool Enemy::deathStatus(){
-    return dead;
-}
-
-void Enemy::isDead(){
-    if(this->health==0){
-        dead = true;
-    }
-}
-

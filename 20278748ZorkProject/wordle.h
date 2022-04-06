@@ -1,4 +1,4 @@
-#ifndef WORDLE_H
+﻿#ifndef WORDLE_H
 #define WORDLE_H
 #include <string>
 #include <vector>
@@ -24,7 +24,8 @@ private:
     vector<string> checkLetter(const string &guess);
     string output;
     string solutionWord;
-    vector<string> guess_words;
+    string guess_words[12957];
+    int arraySize();
 };
 
 #endif // WORDLE_H

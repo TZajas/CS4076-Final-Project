@@ -22,8 +22,8 @@ string Room::shortDescription() {
 }
 
 string Room::longDescription() {
-    if(!(getCharacters().size()<1)){
-        return "Room = " + description + ".\n" + displayItem() + "\n" + "Enemy = " + getCharacters().at(0)->getDescription() + exitString();
+    if(!(getEnemies().size()<1)){
+        return "Room = " + description + ".\n" + displayItem() + "\n" + "Enemy = " + getEnemies().at(0)->getDescription() + exitString();
     }else{
         return "Room = " + description + ".\n" + displayItem() + "\n" + exitString();
 
@@ -47,14 +47,14 @@ Room* Room::nextRoom(string direction) {
 }
 
 void Room::addImage(Image *img){
-    images.push_back(*img);
+    images.push_back(img);
 }
 
 void Room::addItem(Item *inItem) {
     itemsInRoom.push_back(inItem);
 }
-void Room::addCharacter(Character *character){
-    characters.push_back(character);
+void Room::addEnemy(Zombie *enemy){
+    enemies.push_back(enemy);
 }
 void Room::removeItemFromRoom(int location){
     itemsInRoom.erase(itemsInRoom.begin() + location);
@@ -79,6 +79,10 @@ string Room::displayItem() {
 
 int Room::numberOfItems() {
     return itemsInRoom.size();
+}
+
+void Room::removeEnemy(){
+    enemies.erase(enemies.begin());
 }
 
 

@@ -7,7 +7,9 @@ class Image
 {
 public:
     Image(string img);
+    ~Image();
     string getImage();
+    void setImage(string img);
 private:
     string image;
 };

@@ -5,8 +5,7 @@
 class Player : public Character
 {
 public:
-
-    Player(string playerName);
+    Player(string playerName, int health);
     ~Player();
     string listItems();
     void addItems(Item *item);
@@ -15,8 +14,12 @@ public:
     void removeItem(Item *item);
     bool hasItem(string item);
     virtual void setHealth(int setHealth);
-    vector <Item*>itemsInCharacter;
+    //vector <Item*>itemsInCharacter;itemsInCharacter;
+    inline vector <Item*> getInventory(){
+        return itemsInCharacter;
+    }
 private:
+    vector <Item*>itemsInCharacter;
     bool inventoryWeight();
 };
 

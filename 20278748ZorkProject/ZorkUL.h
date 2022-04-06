@@ -2,8 +2,6 @@
 #define ZORKUL_H_
 
 #include "Room.h"
-#include "item.h"
-#include "zombie.h"
 #include "player.h"
 #include <iostream>
 #include <string>

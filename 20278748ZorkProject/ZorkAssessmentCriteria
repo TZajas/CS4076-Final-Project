@@ -13,7 +13,7 @@ Programmer defined exceptions -- Not done
 
 Unions -- Not done
 
-Operator overloading -- Not done
+Operator overloading -- Done
 Character
 
 Abstract classes -- Done
@@ -27,6 +27,7 @@ Advanced pre-processor directives -- not done
 
 C++ Object Construction Sequence -- Done
 Item/Weapon/Tool
+Character/Enemy/Zombie
 
 Initializer List -- Done
 Item/Player/Tool/Weapon/Enemy/Zombie classes
@@ -48,9 +49,9 @@ Memory management - Maybe
 Header files (inclusion guards) -- Done
 All header files
 
-Arrays and pointers -- Not done
+Arrays and pointers -- Done
 
-Friendship -- not done
+Friendship -- Done
 Item/Room
 
 Global variables -- Done

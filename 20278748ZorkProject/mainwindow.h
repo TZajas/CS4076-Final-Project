@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include "ZorkUL.h"
-#include "wordle.h"
 #include "gameoutputs.h"
 #include <iostream>
 #include <string>
@@ -48,6 +47,8 @@ private slots:
 
     void on_wordleEdit_returnPressed();
 
+    void on_AttackButton_clicked();
+
 private:
     QString imageDes;
     QString toQString(string s);
@@ -61,6 +62,7 @@ private:
     ZorkUL *zork;
     Wordle *wordle;
     QString wordleInput;
+    void changeImage(int i);
 
 };
 #endif // MAINWINDOW_H

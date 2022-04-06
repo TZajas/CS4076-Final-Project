@@ -5,7 +5,7 @@ using namespace std;
 
 ZorkUL::ZorkUL() {
     createRooms();
-    p1 = new Player("Player1");
+    p1 = new Player("Player1", 100);
 }
 
 ZorkUL::~ZorkUL(){
@@ -52,8 +52,10 @@ inline void ZorkUL::createRooms()  {
 
     h = new Room("h", false);
         //Weapon *axe = new Weapon("Axe", 20, 22.0, 25, 1.2);
-        h->addCharacter(new Zombie(25, true, new Item("Key Number 1", 5, 100)));
-        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/zombie.jpg"));
+        h->addEnemy(new Zombie("zombie", 100, 25, true, new Item("Golden Key", 5, 100)));
+        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/zombie.png"));
+        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/key.png"));
+        h->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/empty.png"));
     rooms.push_back(h);
 
     i = new Room("i", false);

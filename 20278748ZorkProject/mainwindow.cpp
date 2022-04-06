@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dir_label->setText(toQString(GameOutputs::beginGame));
     ui->wordleEdit->setVisible(false);
     ui->WordleInputLabel->setVisible(false);
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
     createTeleportBox();
     createItemBox();
@@ -46,8 +46,8 @@ void MainWindow::createItemBox(){
 }
 
 void MainWindow::createInventoryBox(){
-    for(int i=0; i< static_cast<int>(zork->getPlayer()->itemsInCharacter.size()); i++)
-        ui->InventoryBox->addItem(toQString(zork->getPlayer()->itemsInCharacter.at(i)->getShortDescription()));
+    for(int i=0; i< static_cast<int>(zork->getPlayer()->getInventory().size()); i++)
+        ui->InventoryBox->addItem(toQString(zork->getPlayer()->getInventory().at(i)->getShortDescription()));
 }
 
 QString MainWindow::toQString(string s){
@@ -69,7 +69,7 @@ void MainWindow::on_NorthButton_clicked()
     dir = "north";
     zork->goRoom(dir);
     ui->dir_label->setText(toQString(zork->printRooms()));
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
@@ -83,7 +83,7 @@ void MainWindow::on_WestButton_clicked()
     dir = "west";
     zork->goRoom(dir);
     ui->dir_label->setText(toQString(zork->printRooms()));
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
@@ -96,7 +96,7 @@ void MainWindow::on_EastButton_clicked()
     dir = "east";
     zork->goRoom(dir);
     ui->dir_label->setText(toQString(zork->printRooms()));
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
     ui->ItemBox->clear();
     createItemBox();
@@ -110,7 +110,7 @@ void MainWindow::on_SouthButton_clicked()
         dir = "south";
         zork->goRoom(dir);
         ui->dir_label->setText(toQString(zork->printRooms()));
-        imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+        imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
         updateImage(imageDes);
         ui->ItemBox->clear();
         createItemBox();
@@ -158,26 +158,30 @@ void MainWindow::on_TeleportButton_clicked()
     }
     ui->ItemBox->clear();
     createItemBox();
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
 }
 
 
 void MainWindow::on_TakeButton_clicked()
 {
+
     if(zork->getCurrentRoom()->getItems().size()!=0){
         vector<Item*> item = zork->getCurrentRoom()->getItems();
         int curPos = ui->ItemBox->currentIndex();
         QString str = ui->ItemBox->currentText();
-        std::string curItem = str.toStdString();
+        string curItem = str.toStdString();
         //Item *x = &item.at(curPos);
         zork->getPlayer()->addItems(zork->getCurrentRoom()->getItems().at(curPos));
-        ui->InventoryBox->addItem(toQString(zork->getPlayer()->itemsInCharacter.back()->getLongDescription()));
+        ui->InventoryBox->addItem(toQString(zork->getPlayer()->getInventory().back()->getLongDescription()));
         zork->getCurrentRoom()->removeItemFromRoom(curPos);
         ui->ItemBox->removeItem(curPos);
-        int counter = zork->getPlayer()->itemsInCharacter.size();
+        int counter = zork->getPlayer()->getInventory().size();
         ui->inventorycounter->display(counter);
         ui->dir_label->setText(toQString(zork->printRooms()));
+        if(zork->getPlayer()->hasItem("Golden Key") && zork->getCurrentRoom()->getImages().size()>1){
+            changeImage(2);
+        }
     }else{
         ;
     }
@@ -185,7 +189,7 @@ void MainWindow::on_TakeButton_clicked()
 
 void MainWindow::on_MapButton_released()
 {
-    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0).getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
 }
 
@@ -198,13 +202,13 @@ void MainWindow::on_DropButton_clicked()
 {
     QString str = ui->InventoryBox->currentText();
     std::string curItem = str.toStdString();
-    for(int i=0;i< static_cast<int>(zork->getPlayer()->itemsInCharacter.size());i++){
-        if(zork->getPlayer()->itemsInCharacter.at(i)->getLongDescription() == curItem){
-            zork->getPlayer()->removeItem(zork->getPlayer()->itemsInCharacter.at(i));
+    for(int i=0;i< static_cast<int>(zork->getPlayer()->getInventory().size());i++){
+        if(zork->getPlayer()->getInventory().at(i)->getLongDescription() == curItem){
+            zork->getPlayer()->removeItem(zork->getPlayer()->getInventory().at(i));
             ui->InventoryBox->removeItem(ui->InventoryBox->currentIndex());
         }
     }
-    int counter = zork->getPlayer()->itemsInCharacter.size();
+    int counter = zork->getPlayer()->getInventory().size();
     ui->inventorycounter->display(counter);
 }
 
@@ -216,6 +220,37 @@ void MainWindow::on_wordleEdit_returnPressed()
           ui->dir_label->setText(toQString(GameOutputs::beatWordle));
           zork->getCurrentRoom()->wordleCheck = false;
           ui->wordleEdit->setVisible(false);
+          ui->WordleInputLabel->setVisible(false);
       }
+}
+
+void MainWindow::changeImage(int i){
+
+    zork->getCurrentRoom()->getImages().at(0)->setImage(zork->getCurrentRoom()->getImages().at(i)->getImage());
+    imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
+    updateImage(imageDes);
+}
+
+void MainWindow::on_AttackButton_clicked()
+{
+    if(zork->getCurrentRoom()->getEnemies().size()>0){
+        Zombie *zom = zork->getCurrentRoom()->getEnemies().at(0);
+        zom->operator--();
+        ui->dir_label->setText(toQString(zom->getHealth()));
+        if(zom->deathStatus()){
+            zork->getCurrentRoom()->addItem(zom->dropItem());
+            zork->getCurrentRoom()->removeEnemy();
+            changeImage(1);
+            ui->ItemBox->clear();
+            createItemBox();
+            ui->dir_label->setText(toQString(zork->printRooms()));
+        }else{
+            //ui->dir_label->setText(QString());
+        }
+
+
+    }else{
+        ;
+    }
 }
 

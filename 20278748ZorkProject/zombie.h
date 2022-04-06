@@ -5,9 +5,11 @@
 class Zombie : public Enemy
 {
 public:
-    Zombie(int damage, bool anger, Item *heldItem);
-    Item dropItem();
+    Zombie(string description, int damage, int health, bool anger, Item *heldItem);
+    ~Zombie();
+    Item* dropItem();
     void isDead();
+    bool deathStatus();
 private:
     int attackSpeed;
     Item *droppedItem;

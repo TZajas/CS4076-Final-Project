@@ -1,17 +1,20 @@
 #include "zombie.h"
 
-Zombie::Zombie(int damage, bool angry, Item *heldItem) : Enemy(damage, angry)
+Zombie::Zombie(string description, int health, int damage, bool angry, Item *heldItem) : Enemy(description, health, damage, angry)
 {
-    this->health = 150;
     this->description = "Zombie";
     this->droppedItem = heldItem;
     this->attackSpeed = 2;
     this->dead = false;
 }
 
-Item Zombie::dropItem(){
+Zombie::~Zombie(){
+
+}
+
+Item* Zombie::dropItem(){
     if(dead)
-        return *droppedItem;
+        return droppedItem;
 }
 
 void Zombie::isDead(){
@@ -20,4 +23,9 @@ void Zombie::isDead(){
     }else{
         dead =false;
     }
+}
+
+bool Zombie::deathStatus(){
+    isDead();
+    return dead;
 }

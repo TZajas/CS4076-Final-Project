@@ -13,8 +13,11 @@ void Wordle::allowed_guesses(string fileName){
     newfile.open(fileName,ios::in); //open a file to perform read operation using file object
     if (newfile.is_open()) {   //checking whether the file is open
         string tp;
+        int i=0;
         while (getline(newfile, tp)) { //read data from file object and put it into string.
-            guess_words.push_back(tp); //print the data of the string
+            //guess_words.push_back(tp); //print the data of the string
+            *(guess_words + i) = tp;
+            i++;
         }
         newfile.close(); //close the file object.
     }
@@ -37,12 +40,16 @@ void Wordle::solution(string fileName){
     }
 }
 
+int Wordle::arraySize(){
+    return sizeof(guess_words)/sizeof(guess_words[0]);
+}
+
 bool Wordle::check_if_occurs(const string &guess)
 {
     bool occurs = false;
-    for (int i = 0; i < static_cast<int>(guess_words.size()); i++)
+    for (int i = 0; i < arraySize(); i++)
     {
-        if (guess_words.at(i) == guess)
+        if (*(guess_words + i) == guess)
         {
             occurs = true;
         }

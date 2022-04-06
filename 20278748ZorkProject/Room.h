@@ -6,10 +6,9 @@
 #include <map>
 #include <string>
 #include <vector>
-//#include "item.h"
 #include "image.h"
 #include "wordle.h"
-#include "character.h"
+#include "zombie.h"
 using namespace std;
 using std::vector;
 
@@ -20,12 +19,11 @@ private:
 	map<string, Room*> exits;
 	string exitString();
     vector <Item*> itemsInRoom;
-    vector <Image> images;
-    vector <Character*> characters;
+    vector <Image*> images;
+    vector <Zombie*> enemies;
     void setExits(Room *north, Room *east, Room *south, Room *west);
     void addImage(Image *img);
-    void addItem(Item *inItem);
-    void addCharacter(Character *character);
+    void addEnemy(Zombie *enemy);
     void addWordle(Wordle *wordle);
     int isItemInRoom(string inString);
     friend class ZorkUL;
@@ -34,14 +32,14 @@ public:
     {
         return itemsInRoom;
     }
-    inline vector<Image> getImages()
+    inline vector<Image*> getImages()
     {
         return images;
     }
 
-    inline vector<Character*> getCharacters()
+    inline vector<Zombie*> getEnemies()
     {
-        return characters;
+        return enemies;
     }
     int numberOfItems();
     Room(string description, bool wordleCheck);
@@ -52,6 +50,8 @@ public:
     string displayItem();
     int numberOfWeapons();
     void removeItemFromRoom(int location);
+    void removeEnemy();
+    void addItem(Item *inItem);
 };
 
 #endif

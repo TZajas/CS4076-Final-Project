@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(string name) : Character(name){
+Player::Player(string name, int health) : Character(name, health){
 
 }
 

@@ -9,22 +9,19 @@ class Character
 {
 protected:
     string description;
-    int health;
     virtual void setHealth(int setHealth)=0;
-    int getHealth();
+    int health;
 public:
     Character();
-    Character(string description);
+    Character(string description, int health);
     virtual ~Character();
     void operator--();
     void operator++();
     inline string getDescription(){
         return description;
     }
-    //void addItems(Item *item);
-    //string shortDescription();
-    //string longDescription();
-
+    string getHealth();
+    void decrementHealth();
 };
 
 #endif //CHARACTER_H_

@@ -1,12 +1,13 @@
+
 #include "character.h"
 
 Character::Character(){
     this->description="Unknown character";
 }
 
-Character::Character(string description) {
+Character::Character(string description, int health) {
     this->description = description;
-    this->health = 100;
+    this->health = health;
 }
 
 Character::~Character() {
@@ -17,18 +18,21 @@ void Character::setHealth(int setHealth){
     this->health=setHealth;
 }
 
-int Character::getHealth(){
-    return this->health;
+string Character::getHealth(){
+    stringstream str;
+    str << description << " health: " << this->health;
+    return str.str();
+
 }
 
 
 void Character::operator--() {
-    this->health = health - 20;
+    health = health - 20;
 }
 
 //4. Unary Operator Overloading
 void Character::operator++() {
-    this->health = health + 20;
+    this->health = this->health + 20;
 }
 
 
