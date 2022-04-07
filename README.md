@@ -16,56 +16,56 @@ template classes -- Done<br/>
 Item.cpp line-23-42<br/>
 
 
-multiple inheritance -- Done
-Character/Enemy/Zombie classes
+multiple inheritance -- Done<br/>
+Character/Enemy/Zombie classes<br/>
 
-Programmer defined exceptions -- Done
+Programmer defined exceptions -- Done<br/>
 
-Operator overloading -- Done
-Item.cpp line-59-68
-Character.cpp line-33-42
+Operator overloading -- Done<br/>
+Item.cpp line-59-68<br/>
+Character.cpp line-33-42<br/>
 
-Abstract classes -- Done
-Character class
+Abstract classes -- Done<br/>
+Character class<br/>
 
-Advanced pre-processor directives -- Done
-MainWindow class
+Advanced pre-processor directives -- Done<br/>
+MainWindow class<br/>
 
-C++ Object Construction Sequence -- Done
-Item/Weapon/Tool
-Character/Enemy/Zombie
+C++ Object Construction Sequence -- Done<br/>
+Item/Weapon/Tool<br/>
+Character/Enemy/Zombie<br/>
 
-Initializer List -- Done
-Item/Player/Tool/Weapon/Enemy/Zombie classes
+Initializer List -- Done<br/>
+Item/Player/Tool/Weapon/Enemy/Zombie classes<br/>
 
-C++ References -- Done
-All throughout code
-e.g Item.cpp line-59-68
+C++ References -- Done<br/>
+All throughout code<br/>
+e.g Item.cpp line-59-68<br/>
 
-Pointers -- Done
-All throughout code
-e.g all objects are created as pointers to objects
+Pointers -- Done<br/>
+All throughout code<br/>
+e.g all objects are created as pointers to objects<br/>
 
-Inheritance -- Done 
-Item/Weapon/Tool classes
+Inheritance -- Done <br/>
+Item/Weapon/Tool classes<br/>
 
-Destructors -- Done
-Item(virtual destructor)
-ZorkUL class
+Destructors -- Done<br/>
+Item(virtual destructor)<br/>
+ZorkUL class<br/>
 
-Header files (inclusion guards) -- Done
-All throughout code
+Header files (inclusion guards) -- Done<br/>
+All throughout code<br/>
 
-Arrays and pointers -- Done
-wordle.h line-27
-wordle.cpp function on line 51
+Arrays and pointers -- Done<br/>
+wordle.h line-27<br/>
+wordle.cpp function on line 51<br/>
 
-Friendship -- Done
-Item/Room ZorkUL/wordle classes
+Friendship -- Done<br/>
+Item/Room ZorkUL/wordle classes<br/>
 
-Global variables -- Done
-MainWindow
-ZorkUL
+Global variables -- Done<br/>
+MainWindow<br/>
+ZorkUL<br/>
 
-Private, Public, Protected -- Done
-All throughout code
+Private, Public, Protected -- Done<br/>
+All throughout code<br/>
