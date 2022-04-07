@@ -1,7 +1,7 @@
 # CS4076-Final-Project
 Final Project for Event Driven Programming
 
-Student Name: Tomasz Zajas
+Student Name: Tomasz Zajas\n
 Student Number: 20278748
 
 
