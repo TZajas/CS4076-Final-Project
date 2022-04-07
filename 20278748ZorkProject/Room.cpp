@@ -1,12 +1,14 @@
 #include "Room.h"
+#include "iostream"
 
-
-Room::Room(string description, bool wordleCheck) {
+Room::Room(string description, bool wordleCheck)
+{
 	this->description = description;
     this->wordleCheck = wordleCheck;
 }
 
-void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
+void Room::setExits(Room *north, Room *east, Room *south, Room *west)
+{
 	if (north != NULL)
 		exits["north"] = north;
 	if (east != NULL)
@@ -17,20 +19,39 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["west"] = west;
 }
 
-string Room::shortDescription() {
+string Room::shortDescription()
+{
 	return description;
 }
 
-string Room::longDescription() {
-    if(!(getEnemies().size()<1)){
-        return "Room = " + description + ".\n" + displayItem() + "\n" + "Enemy = " + getEnemies().at(0)->getDescription() + exitString();
-    }else{
-        return "Room = " + description + ".\n" + displayItem() + "\n" + exitString();
+string Room::longDescription(Room &room)
+{
+//    if(!(getEnemies().size()<1)){
+//        return "Room = " + description + ".\n" + displayItem() + "\n" + "Enemy = " + getEnemies().at(0)->getDescription() + exitString();
+//    }else{
+//        return "Room = " + description + ".\n" + displayItem() + "\n" + exitString();
 
-    }
+//    }
+    stringstream out;
+    out<<room;
+    return out.str();
+
 }
 
-string Room::exitString() {
+ostream& operator<<(ostream& os, Room &room)
+{
+    if(!(room.getEnemies().size()<1)){
+        os << "Room = " << room.description << "\n" + room.displayItem() << "\n" << "Enemy = " << room.getEnemies().at(0)->getDescription() << room.exitString();
+    }else{
+        os << "Room = " << room.description << "\n" + room.displayItem() << "\n" << room.exitString();
+
+    }
+    return os;
+}
+
+
+string Room::exitString()
+{
 	string returnString = "\nexits =";
 	for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
 		// Loop through map
@@ -38,7 +59,8 @@ string Room::exitString() {
 	return returnString;
 }
 
-Room* Room::nextRoom(string direction) {
+Room* Room::nextRoom(string direction)
+{
 	map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
 	if (next == exits.end())
 		return NULL; // if exits.end() was returned, there's no room in that direction.
@@ -46,21 +68,26 @@ Room* Room::nextRoom(string direction) {
 				// part of the "pair" (<string, Room*>) and return it.
 }
 
-void Room::addImage(Image *img){
+void Room::addImage(Image *img)
+{
     images.push_back(img);
 }
 
-void Room::addItem(Item *inItem) {
+void Room::addItem(Item *inItem)
+{
     itemsInRoom.push_back(inItem);
 }
-void Room::addEnemy(Zombie *enemy){
+void Room::addEnemy(Zombie *enemy)
+{
     enemies.push_back(enemy);
 }
-void Room::removeItemFromRoom(int location){
+void Room::removeItemFromRoom(int location)
+{
     itemsInRoom.erase(itemsInRoom.begin() + location);
 }
 
-string Room::displayItem() {
+string Room::displayItem()
+{
     string tempString = "Items in room: ";
     int sizeItems = (itemsInRoom.size());
     if (itemsInRoom.size() < 1) {
@@ -77,11 +104,13 @@ string Room::displayItem() {
     return tempString;
 }
 
-int Room::numberOfItems() {
+int Room::numberOfItems()
+{
     return itemsInRoom.size();
 }
 
-void Room::removeEnemy(){
+void Room::removeEnemy()
+{
     enemies.erase(enemies.begin());
 }
 

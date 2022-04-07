@@ -6,23 +6,28 @@ Tool::Tool(string name, int weight, float value, string use, int useSpeed) : Ite
     setUseSpeed(useSpeed);
 }
 
-void Tool::setUse(string use){
+void Tool::setUse(string use)
+{
     this->use = use;
 }
 
-void Tool::setUseSpeed(int speed){
+void Tool::setUseSpeed(int speed)
+{
     this->useSpeed = speed;
 }
 
-int Tool::getUseSpeed(){
+int Tool::getUseSpeed()
+{
     return this->useSpeed;
 }
 
-string Tool::getUse(){
+string Tool::getUse()
+{
     return this->use;
 }
 
-string Tool::getLongDescription(){
+string Tool::getLongDescription()
+{
         stringstream str;
         str << "Tool: " << getShortDescription() << ", Value: " << to_string(getValue()) << "Tool use: " << getUse()<< "Use Speed: " << getUseSpeed();
         return str.str();

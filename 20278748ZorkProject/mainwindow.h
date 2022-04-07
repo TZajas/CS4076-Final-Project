@@ -57,6 +57,7 @@ private:
     void createItemBox();
     void resetItemBox();
     void wordleCheck();
+    void changeRoom(string dir);
     Ui::MainWindow *ui;
     string dir;
     ZorkUL *zork;

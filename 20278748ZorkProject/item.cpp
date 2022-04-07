@@ -30,35 +30,49 @@ void Item::setWeight(const T& inWeightGrams){
        weightGrams = inWeightGrams;
 }
 
-float Item::getWeight(){
+float Item::getWeight()
+{
     return weightGrams;
 }
 
 template <typename T>
-void Item::setValue(const T& inValue){
+void Item::setValue(const T& inValue)
+{
 	   value = inValue;
 }
 
-float Item::getValue(){
+float Item::getValue()
+{
     return value;
 }
 
-void Item::setDropped(bool dropped){
+void Item::setDropped(bool dropped)
+{
     this->dropped = dropped;
 }
 
-bool Item::isDropped() const{
+bool Item::isDropped() const
+{
     return dropped;
 }
 
-bool operator==(Item &item1, Item &item2) {
+bool operator==(Item &item1, Item &item2)
+{
     return item1.getShortDescription() == item2.getShortDescription();
+}
+
+ostream& operator<<(ostream& os, Item &item)
+{
+    os<< "Item: " << item.getShortDescription()<< " | Value: " << to_string(item.getValue()) << " | Weight: " << item.getWeight();
+    return os;
 }
 
 string Item::getShortDescription()
 {
 	return description;
 }
+
+
 
 string Item::getLongDescription()
 {

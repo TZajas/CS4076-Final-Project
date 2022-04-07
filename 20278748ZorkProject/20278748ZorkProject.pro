@@ -25,6 +25,7 @@ SOURCES += \
     zombie.cpp
 
 HEADERS += \
+    Exception.h \
     Room.h \
     ZorkUL.h \
     character.h \

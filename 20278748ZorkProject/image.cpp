@@ -5,14 +5,17 @@ Image::Image(string img)
     this->image=img;
 }
 
-Image::~Image(){
+Image::~Image()
+{
 
 }
 
-string Image::getImage(){
+string Image::getImage()
+{
     return this->image;
 }
 
-void Image::setImage(string img){
+void Image::setImage(string img)
+{
     this->image = img;
 }

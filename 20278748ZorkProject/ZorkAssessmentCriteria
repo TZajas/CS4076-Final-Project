@@ -9,7 +9,7 @@ Character/Enemy/Zombie classes
 
 namespaces -- Not done
 
-Programmer defined exceptions -- Not done
+Programmer defined exceptions -- Done
 
 Unions -- Not done
 
@@ -23,7 +23,7 @@ Copy constructors (deep , shallow copy) -- Not done
 
 Bit structures -- not done
 
-Advanced pre-processor directives -- not done
+Advanced pre-processor directives -- Done
 
 C++ Object Construction Sequence -- Done
 Item/Weapon/Tool

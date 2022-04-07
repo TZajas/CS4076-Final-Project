@@ -33,6 +33,8 @@ public:
     float getWeight();
 	float getValue();
     friend bool operator== (Item &item1, Item &item2);
+    friend ostream& operator<<(ostream& os, Item &item);
+
 };
 
 #endif /*ITEM_H_*/

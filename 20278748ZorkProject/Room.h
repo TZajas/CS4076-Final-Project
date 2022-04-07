@@ -45,13 +45,14 @@ public:
     Room(string description, bool wordleCheck);
     bool wordleCheck;
 	string shortDescription();
-    string longDescription();
+    string longDescription(Room &room);
 	Room* nextRoom(string direction);
     string displayItem();
     int numberOfWeapons();
     void removeItemFromRoom(int location);
     void removeEnemy();
     void addItem(Item *inItem);
+    friend ostream& operator<<(ostream& os, Room &room);
 };
 
 #endif

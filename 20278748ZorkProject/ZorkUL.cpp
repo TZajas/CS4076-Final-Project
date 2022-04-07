@@ -3,6 +3,7 @@
 using namespace std;
 #include "ZorkUL.h"
 
+//contructor that creates the rooms and play object;
 ZorkUL::ZorkUL() {
     createRooms();
     p1 = new Player("Player1", 100);
@@ -69,6 +70,7 @@ inline void ZorkUL::createRooms()  {
 
     wordleRoom = new Room("Treasure Room", false);
         wordleRoom->addImage(new Image("/home/tomek/Desktop/ZorkProject20278748/ProjectImages/k.png"));
+        wordleRoom->addItem(new Item("The Chain of Champions", 100, 1000));
     rooms.push_back(wordleRoom);
 
 
@@ -87,34 +89,32 @@ inline void ZorkUL::createRooms()  {
     currentRoom = a;
 }
 
-void ZorkUL::play() {
-    printWelcome();
-}
 
-string ZorkUL::printWelcome() {
-    string w = "start\n";
-    string e = "info for help\n";
-    string l = "\n";
-    string c =  currentRoom->longDescription();
-    return w + e + l + c;
-}
-
+//change room and print output depending on direction
 string ZorkUL::printRooms(){
     string des;
-    des = currentRoom->longDescription();
-    //QString str = QString::fromUtf8(des.c_str());
+    des = currentRoom->longDescription(*currentRoom);
     return des;
 }
 
-void ZorkUL::goRoom(string direction){
-    Room* nextRoom = currentRoom->nextRoom(direction);
-    if (nextRoom == NULL)
-        ;
-    else
-    {
-        currentRoom = nextRoom;
+string ZorkUL::goRoom(string direction){
+    string output;
+    try {
+        Room* nextRoom = currentRoom->nextRoom(direction);
+        if (nextRoom == NULL)
+            throw Exception();
+        else
+        {
+            currentRoom = nextRoom;
+            output = currentRoom->longDescription(*currentRoom);
+        }
+    }  catch (Exception &error) {
+        output = error.error();
     }
+    return output;
 }
+
+
 
 void ZorkUL::teleport(){
         unsigned int roomSize = rooms.size();

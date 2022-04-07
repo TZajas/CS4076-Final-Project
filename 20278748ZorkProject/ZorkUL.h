@@ -3,6 +3,7 @@
 
 #include "Room.h"
 #include "player.h"
+#include "Exception.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -45,7 +46,7 @@ public:
     ZorkUL();
     ~ZorkUL();
     void play();
-    void goRoom(string direction);
+    string goRoom(string direction);
     void teleport();
     void wordleRoom();
 };

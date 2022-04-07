@@ -8,14 +8,14 @@ Wordle::Wordle()
     game_won = false;
 }
 
-void Wordle::allowed_guesses(string fileName){
+void Wordle::allowed_guesses(string fileName)
+{
     fstream newfile;
     newfile.open(fileName,ios::in); //open a file to perform read operation using file object
     if (newfile.is_open()) {   //checking whether the file is open
         string tp;
         int i=0;
         while (getline(newfile, tp)) { //read data from file object and put it into string.
-            //guess_words.push_back(tp); //print the data of the string
             *(guess_words + i) = tp;
             i++;
         }
@@ -23,13 +23,13 @@ void Wordle::allowed_guesses(string fileName){
     }
 }
 
-void Wordle::solution(string fileName){
+void Wordle::solution(string fileName)
+{
     fstream textFile;
     string input;
     srand( time(0));
     int random;
     random = rand() % 1574+1;
-    //textFile.open(":/wordle_guesses.txt",ios::in);
     textFile.open(fileName,ios::in);
     if(textFile.is_open()){
         for(int i=0;i<random;i++){
@@ -40,7 +40,8 @@ void Wordle::solution(string fileName){
     }
 }
 
-int Wordle::arraySize(){
+int Wordle::arraySize()
+{
     return sizeof(guess_words)/sizeof(guess_words[0]);
 }
 
@@ -57,7 +58,8 @@ bool Wordle::check_if_occurs(const string &guess)
     return occurs;
 }
 
-vector<string> Wordle::checkLetter(const string &guess){
+vector<string> Wordle::checkLetter(const string &guess)
+{
     string solution = solutionWord;
     char preventDuplication='0';
     vector<string> letterColour(static_cast<int>(guess.size()));
@@ -81,7 +83,8 @@ vector<string> Wordle::checkLetter(const string &guess){
     return letterColour;
 }
 
-bool Wordle::check_if_correct(const vector<string> &letterColour){
+bool Wordle::check_if_correct(const vector<string> &letterColour)
+{
     bool check = true;
     for(int i=0;i<5;i++){
         if(letterColour.at(i) != " G "){
@@ -91,7 +94,8 @@ bool Wordle::check_if_correct(const vector<string> &letterColour){
     return check;
 }
 
-string Wordle::play(const string &guess){
+string Wordle::play(const string &guess)
+{
     vector<string>letterColour;
 
     if(guess.length()>5 || guess.length()<5){
