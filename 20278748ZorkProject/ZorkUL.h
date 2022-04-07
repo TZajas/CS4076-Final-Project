@@ -49,6 +49,7 @@ public:
     string goRoom(string direction);
     void teleport();
     void wordleRoom();
+    string curDir;
 };
 
 #endif /*ZORKUL_H_*/

@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <filesystem>
+#include <unistd.h>
+
+using std::cout; using std::cin;
+using std::endl; using std::string;
+using std::filesystem::current_path;
 //#define DEBUG
 using namespace std;
 
@@ -205,6 +211,7 @@ void MainWindow::on_MapButton_released()
 {
     imageDes = toQString(zork->getCurrentRoom()->getImages().at(0)->getImage());
     updateImage(imageDes);
+    string readFilePath = current_path();
 }
 
 void MainWindow::on_MapButton_pressed()

@@ -395,7 +395,7 @@ public:
         SouthButton->setFont(font1);
         dir_label = new QLabel(centralwidget);
         dir_label->setObjectName(QString::fromUtf8("dir_label"));
-        dir_label->setGeometry(QRect(50, 330, 541, 161));
+        dir_label->setGeometry(QRect(40, 330, 561, 161));
         QPalette palette5;
         palette5.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette5.setBrush(QPalette::Active, QPalette::Button, brush8);

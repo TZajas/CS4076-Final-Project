@@ -50,5 +50,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     ZorkAssessmentCriteria \
+    map.png \
     wordle_guesses.txt \
     wordle_solutions.txt

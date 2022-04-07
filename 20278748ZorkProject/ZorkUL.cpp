@@ -1,5 +1,12 @@
 #include <iostream>
+#include <filesystem>
+#include <unistd.h>
 
+using std::cout; using std::cin;
+using std::endl; using std::string;
+using std::filesystem::current_path;
+//#define DEBUG
+using namespace std;
 using namespace std;
 #include "ZorkUL.h"
 

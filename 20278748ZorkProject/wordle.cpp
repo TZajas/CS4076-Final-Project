@@ -8,21 +8,23 @@ Wordle::Wordle()
     game_won = false;
 }
 
+//read allowed guesses into a vector
 void Wordle::allowed_guesses(string fileName)
 {
     fstream newfile;
-    newfile.open(fileName,ios::in); //open a file to perform read operation using file object
-    if (newfile.is_open()) {   //checking whether the file is open
+    newfile.open(fileName,ios::in);
+    if (newfile.is_open()) {
         string tp;
         int i=0;
-        while (getline(newfile, tp)) { //read data from file object and put it into string.
+        while (getline(newfile, tp)) {
             *(guess_words + i) = tp;
             i++;
         }
-        newfile.close(); //close the file object.
+        newfile.close();
     }
 }
 
+//searches through solutions words and chooses a random one
 void Wordle::solution(string fileName)
 {
     fstream textFile;
@@ -45,6 +47,8 @@ int Wordle::arraySize()
     return sizeof(guess_words)/sizeof(guess_words[0]);
 }
 
+
+//searches through guess array to see if guess occurs
 bool Wordle::check_if_occurs(const string &guess)
 {
     bool occurs = false;
@@ -58,6 +62,10 @@ bool Wordle::check_if_occurs(const string &guess)
     return occurs;
 }
 
+
+//checks each individual letter of guess wod agaisnt solution word
+//if a letter matches check if it is in the same position
+//if it is store a G in that index in the vector if not store a Y at that index
 vector<string> Wordle::checkLetter(const string &guess)
 {
     string solution = solutionWord;
@@ -83,6 +91,7 @@ vector<string> Wordle::checkLetter(const string &guess)
     return letterColour;
 }
 
+//if evry index in array is a G then word is correct
 bool Wordle::check_if_correct(const vector<string> &letterColour)
 {
     bool check = true;
@@ -93,6 +102,7 @@ bool Wordle::check_if_correct(const vector<string> &letterColour)
     }
     return check;
 }
+
 
 string Wordle::play(const string &guess)
 {

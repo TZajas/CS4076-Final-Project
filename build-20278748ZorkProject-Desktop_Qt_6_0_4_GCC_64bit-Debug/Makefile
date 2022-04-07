@@ -82,6 +82,7 @@ OBJECTS       = Room.o \
 		zombie.o \
 		moc_mainwindow.o
 DIST          = ../20278748ZorkProject/ZorkAssessmentCriteria \
+		../20278748ZorkProject/map.png \
 		../20278748ZorkProject/wordle_guesses.txt \
 		../20278748ZorkProject/wordle_solutions.txt \
 		../../../Qt/6.0.4/gcc_64/mkspecs/features/spec_pre.prf \
@@ -531,6 +532,7 @@ moc_mainwindow.cpp: ../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/enemy.h \
 		../20278748ZorkProject/character.h \
 		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/Exception.h \
 		../20278748ZorkProject/gameoutputs.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmessagebox.h \
@@ -717,7 +719,8 @@ ZorkUL.o: ../20278748ZorkProject/ZorkUL.cpp ../20278748ZorkProject/ZorkUL.h \
 		../20278748ZorkProject/zombie.h \
 		../20278748ZorkProject/enemy.h \
 		../20278748ZorkProject/character.h \
-		../20278748ZorkProject/player.h
+		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/Exception.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ZorkUL.o ../20278748ZorkProject/ZorkUL.cpp
 
 character.o: ../20278748ZorkProject/character.cpp ../20278748ZorkProject/character.h \
@@ -750,6 +753,7 @@ main.o: ../20278748ZorkProject/main.cpp ../20278748ZorkProject/mainwindow.h \
 		../20278748ZorkProject/enemy.h \
 		../20278748ZorkProject/character.h \
 		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/Exception.h \
 		../20278748ZorkProject/gameoutputs.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmessagebox.h \
@@ -911,6 +915,7 @@ mainwindow.o: ../20278748ZorkProject/mainwindow.cpp ../20278748ZorkProject/mainw
 		../20278748ZorkProject/enemy.h \
 		../20278748ZorkProject/character.h \
 		../20278748ZorkProject/player.h \
+		../20278748ZorkProject/Exception.h \
 		../20278748ZorkProject/gameoutputs.h \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/QMessageBox \
 		../../../Qt/6.0.4/gcc_64/include/QtWidgets/qmessagebox.h \

@@ -1,6 +1,5 @@
 #include "gameoutputs.h"
 
-
 const string GameOutputs::beatWordle = "Congratulations you beat the puzzle!!\n"
                                        "In the next chamber a worthy treasure awaits\n"
                                        "Please proceed South to the treasure room";
