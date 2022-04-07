@@ -1,19 +1,19 @@
 # CS4076-Final-Project
-Final Project for Event Driven Programming
+Final Project for Event Driven Programming<br/>
 
-Student Name: Tomasz Zajas\n
-Student Number: 20278748
+Student Name: Tomasz Zajas<br/>
+Student Number: 20278748<br/>
 
 
-virtual functions -- Done
-Item.cpp line-77
-Weapon.cpp line-30
-Tool.cpp line-29
-Enemy.cpp line-43
-Player.cpp line-67
+virtual functions -- Done<br/>
+Item.cpp line-77<br/>
+Weapon.cpp line-30<br/>
+Tool.cpp line-29<br/>
+Enemy.cpp line-43<br/>
+Player.cpp line-67<br/>
 
-template classes -- Done 
-Item.cpp line-23-42
+template classes -- Done<br/> 
+Item.cpp line-23-42<br/>
 
 
 multiple inheritance -- Done
