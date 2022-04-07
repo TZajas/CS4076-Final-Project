@@ -1,9 +1,10 @@
 # CS4076-Final-Project
+# link to github: https://github.com/TZajas/CS4076-Final-Project
+
 Final Project for Event Driven Programming<br/>
 
 Student Name: Tomasz Zajas<br/>
 Student Number: 20278748<br/>
-
 
 virtual functions -- Done<br/>
 Item.cpp line-77<br/>
